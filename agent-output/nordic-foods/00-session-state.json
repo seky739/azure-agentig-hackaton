@@ -4,8 +4,8 @@
   "iac_tool": "",
   "region": "swedencentral",
   "branch": "main",
-  "updated": "2026-10-14T13:08:07Z",
-  "current_step": 2,
+  "updated": "2026-10-14T13:21:17Z",
+  "current_step": 3,
   "decisions": {
     "region": "swedencentral",
     "compliance": "GDPR (EU data residency for customer PII)",
@@ -26,7 +26,10 @@
     "vnet_address_space": "10.0.0.0/16",
     "subnet_plan": "[{\"purpose\":\"app-integration-prod\",\"size\":\"/26\",\"address_prefix\":\"10.0.0.0/26\",\"delegation\":\"Microsoft.Web/serverFarms\",\"nsg\":true,\"route_table\":null},{\"purpose\":\"app-integration-dev\",\"size\":\"/26\",\"address_prefix\":\"10.0.0.64/26\",\"delegation\":\"Microsoft.Web/serverFarms\",\"nsg\":true,\"route_table\":null},{\"purpose\":\"private-endpoints-prod-shared\",\"size\":\"/27\",\"address_prefix\":\"10.0.0.128/27\",\"delegation\":null,\"nsg\":true,\"route_table\":null},{\"purpose\":\"private-endpoints-dev\",\"size\":\"/27\",\"address_prefix\":\"10.0.0.160/27\",\"delegation\":null,\"nsg\":true,\"route_table\":null},{\"purpose\":\"github-runner\",\"size\":\"/27\",\"address_prefix\":\"10.0.0.192/27\",\"delegation\":\"GitHub.Network/networkSettings\",\"nsg\":true,\"route_table\":null}]",
     "vnet_plan_decision": "confirmed",
-    "cost_feasibility_review": "run"
+    "cost_feasibility_review": "run",
+    "design_scope": "both",
+    "diagram_tool": "python",
+    "subscription_id": "7a2e8db9-42a4-4143-a9b5-c74fba49da74"
   },
   "open_findings": [
     "should_fix|accept|65c6e16b|Blob recovery targets are not reconciled with the LRS pin|Blob RTO 24h/RPO 12h; LRS risk accepted",
@@ -190,6 +193,46 @@
       "timestamp": "2026-10-14T13:08:07Z",
       "rationale": "Approved in chat 2026-10-14 after current clean reviews; open items (99.9% sponsor decision, GDPR mapping acceptance, SLAs, restore test, zone-redundant SKU pricing) carried forward",
       "step": "2"
+    },
+    {
+      "decision": "design_scope=both",
+      "timestamp": "2026-10-14T13:13:50Z",
+      "step": "3"
+    },
+    {
+      "decision": "diagram_tool=python",
+      "timestamp": "2026-10-14T13:13:50Z",
+      "step": "3"
+    },
+    {
+      "decision": "ADR-0001 Containerized App Service, one plan per environment",
+      "timestamp": "2026-10-14T13:15:39Z",
+      "rationale": "Portal and API share a P0v3 plan per environment; cheapest tier meeting repo floors",
+      "step": "3"
+    },
+    {
+      "decision": "ADR-0002 Private network posture with one shared VNet",
+      "timestamp": "2026-10-14T13:15:39Z",
+      "rationale": "Private endpoints and private DNS for data services; portal proxies the private API",
+      "step": "3"
+    },
+    {
+      "decision": "ADR-0003 Azure SQL DTU Entra-only with 30-day backup cap",
+      "timestamp": "2026-10-14T13:15:39Z",
+      "rationale": "S2 Prod, S0 Dev, Local backup redundancy; GDPR erasure control",
+      "step": "3"
+    },
+    {
+      "decision": "ADR-0004 Single-zone Prod availability posture",
+      "timestamp": "2026-10-14T13:15:39Z",
+      "rationale": "Accepted posture only; 99.9% target remains an open sponsor decision",
+      "step": "3"
+    },
+    {
+      "decision": "ADR-0005 Private CI/CD runner and shared registry",
+      "timestamp": "2026-10-14T13:15:40Z",
+      "rationale": "OIDC VNet runner, Premium ACR with private endpoint and AcrPull image pull",
+      "step": "3"
     }
   ],
   "review_audit": {
@@ -266,19 +309,19 @@
     "3": {
       "name": "Design",
       "agent": "04-Design",
-      "status": "pending",
+      "status": "complete",
       "sub_step": null,
-      "started": null,
-      "completed": null,
+      "started": "2026-10-14T13:18:22Z",
+      "completed": "2026-10-14T13:18:23Z",
       "artifacts": [],
       "context_files_used": []
     },
     "3_5": {
       "name": "Governance",
       "agent": "04g-Governance",
-      "status": "pending",
+      "status": "in_progress",
       "sub_step": null,
-      "started": null,
+      "started": "2026-10-14T13:21:17Z",
       "completed": null,
       "artifacts": [],
       "context_files_used": []

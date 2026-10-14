@@ -277,6 +277,7 @@ def _effect_of(defn: dict[str, Any]) -> str | None:
         "deny": "Deny",
         "audit": "Audit",
         "auditifnotexists": "AuditIfNotExists",
+        "auditaction": "AuditAction",
         "deployifnotexists": "DeployIfNotExists",
         "modify": "Modify",
         "append": "Append",
@@ -874,7 +875,7 @@ def discover(
             if eff == "Disabled":
                 disabled_count += 1
                 continue
-            if eff in {"Audit", "AuditIfNotExists"}:
+            if eff in {"Audit", "AuditIfNotExists", "AuditAction"}:
                 audit_count += 1
                 continue
             if eff not in RELEVANT_EFFECTS:

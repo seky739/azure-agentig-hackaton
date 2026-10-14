@@ -1,9 +1,10 @@
-# nordic-foods — Handoff (Step 2 complete; ready for Step 3 or 3.5)
+# nordic-foods — Handoff (Step 3 complete; ready for Step 3.5)
 Updated: 2026-10-14 | IaC: Terraform | Branch: n/a
 
 ## Completed Steps
 - [x] Step 1 → agent-output/nordic-foods/01-requirements.md (review approved; Gate 1 approved)
 - [x] Step 2 → agent-output/nordic-foods/02-architecture-assessment.md and 03-des-cost-estimate.md (architecture and cost-feasibility reviews APPROVED; human approval 2026-10-14)
+- [x] Step 3 → agent-output/nordic-foods/03-des-diagram.py/.png/.svg and 03-des-adr-0001 to 0005 (diagram and five ADRs; no ADR review run, review_depth not deep)
 
 ## Key Decisions
 - Region: swedencentral; GDPR, customer PII stays in the EU
@@ -22,7 +23,8 @@ Updated: 2026-10-14 | IaC: Terraform | Branch: n/a
 ## Context for Next Step
 - Open items carried forward (not closed by approval): sponsor decision on the 99.9% target; priced zone-redundant SKU from the repo matrix; Michal Sakac's acceptance of the GDPR field mapping; numeric SLAs and a timed SQL restore; maximum concurrent runners against 10.0.0.192/27; private DNS zone ownership against policy.
 - Step 4 must include: App Service VNet image pull and AcrPull for ACR, a separate Terraform state bootstrap phase, application alert thresholds, diagnostics for ACR and network resources.
-- Next human handoff: Design (Step 3) when not skipped, then Governance Discovery (Step 3.5).
+- Step 3 ADRs are Proposed and record approved decisions only; ADR-0004 documents the single-zone posture and leaves the 99.9% sponsor decision open.
+- Next human handoff: Governance Discovery (Step 3.5).
 - Run the Step 2 architecture assessment and the independent cost-feasibility review against the EUR 500 budget and the private-endpoint baseline (done).
 - 1-year reservation scope is left for Step 2. Peak duration, data growth, storage/log volumes are confirmed unknown; the Architect proposes the EUR/USD planning rate and sizing assumptions.
 
@@ -38,6 +40,14 @@ Updated: 2026-10-14 | IaC: Terraform | Branch: n/a
 - agent-output/nordic-foods/challenge-findings-requirements-decisions.json
 - agent-output/nordic-foods/02-architecture-assessment.md
 - agent-output/nordic-foods/03-des-cost-estimate.md
+- agent-output/nordic-foods/03-des-diagram.py
+- agent-output/nordic-foods/03-des-diagram.png
+- agent-output/nordic-foods/03-des-diagram.svg
+- agent-output/nordic-foods/03-des-adr-0001-containerized-app-service-per-environment.md
+- agent-output/nordic-foods/03-des-adr-0002-private-network-posture.md
+- agent-output/nordic-foods/03-des-adr-0003-azure-sql-dtu-entra-only-gdpr-retention.md
+- agent-output/nordic-foods/03-des-adr-0004-single-zone-prod-availability-posture.md
+- agent-output/nordic-foods/03-des-adr-0005-private-cicd-runner-and-registry.md
 - agent-output/nordic-foods/challenge-findings-architecture.json
 - agent-output/nordic-foods/challenge-findings-cost-estimate.json
 - agent-output/nordic-foods/README.md

@@ -6,7 +6,10 @@
   "created_at": "2026-10-14T08:55:00Z",
   "updated_at": "2026-10-14T12:45:00Z",
   "current_revision": 3,
-  "environments": ["dev", "prod"],
+  "environments": [
+    "dev",
+    "prod"
+  ],
   "revisions": [
     {
       "rev": 1,
@@ -15,7 +18,9 @@
       "step": "1",
       "apex_recall_checkpoint": "nordic-foods:1:phase_5_artifact",
       "summary": "Initial user pins: Storage Account replication pinned to LRS; no other SKU preferences.",
-      "changed_ids": ["storage-data"]
+      "changed_ids": [
+        "storage-data"
+      ]
     },
     {
       "rev": 2,
@@ -24,7 +29,10 @@
       "step": "2",
       "apex_recall_checkpoint": "nordic-foods:2:phase_4_sku_authoring",
       "summary": "Architect-derived App Service plan (P0v3 Prod, B1 Dev) and SQL Database (DTU S2 Prod, Basic Dev), approved at the SKU confirmation gate; storage-data pin preserved.",
-      "changed_ids": ["app-plan-web", "sql-db-core"]
+      "changed_ids": [
+        "app-plan-web",
+        "sql-db-core"
+      ]
     },
     {
       "rev": 3,
@@ -33,7 +41,11 @@
       "step": "2",
       "apex_recall_checkpoint": "nordic-foods:2:phase_6_challenger_pass1",
       "summary": "Accepted must-fix 4ba8c7d4: Dev App Service plan moves from B1 to P0v3 and Dev SQL from Basic to DTU S0 so the vnet-integration and private-endpoints feature floors hold; re-confirmed at the SKU gate.",
-      "changed_ids": ["app-plan-web", "sql-db-core"]
+      "changed_ids": [
+        "app-plan-web",
+        "sql-db-core"
+      ],
+      "commit_sha": "d0e0050"
     }
   ],
   "services": [
@@ -41,13 +53,25 @@
       "id": "storage-data",
       "service": "Storage Account",
       "size": "Standard_LRS",
-      "iac_logical_names": {"bicep": "storageData", "terraform": "module.storage_data"},
-      "capacity": {"mode": "fixed", "default": 1},
+      "iac_logical_names": {
+        "bicep": "storageData",
+        "terraform": "module.storage_data"
+      },
+      "capacity": {
+        "mode": "fixed",
+        "default": 1
+      },
       "zonal": false,
-      "regions": ["swedencentral"],
+      "regions": [
+        "swedencentral"
+      ],
       "sla_target": "99.9%",
-      "commitment": {"type": "on-demand"},
-      "requires": ["private-endpoints"],
+      "commitment": {
+        "type": "on-demand"
+      },
+      "requires": [
+        "private-endpoints"
+      ],
       "notes": "User pinned LRS replication for all environments at Step 1.",
       "source": "user-pin",
       "source_step": "1",
@@ -59,13 +83,27 @@
       "id": "app-plan-web",
       "service": "App Service Plan",
       "size": "P0v3",
-      "iac_logical_names": {"bicep": "appServicePlanWeb", "terraform": "module.app_service_plan_web"},
-      "capacity": {"mode": "fixed", "default": 1},
+      "iac_logical_names": {
+        "bicep": "appServicePlanWeb",
+        "terraform": "module.app_service_plan_web"
+      },
+      "capacity": {
+        "mode": "fixed",
+        "default": 1
+      },
       "zonal": false,
-      "regions": ["swedencentral"],
+      "regions": [
+        "swedencentral"
+      ],
       "sla_target": "99.9%",
-      "commitment": {"type": "on-demand"},
-      "requires": ["vnet-integration", "private-endpoints", "managed-identity"],
+      "commitment": {
+        "type": "on-demand"
+      },
+      "requires": [
+        "vnet-integration",
+        "private-endpoints",
+        "managed-identity"
+      ],
       "notes": "Linux Premium v3 plan shared by the public web portal and the private API app per environment (Dev and Prod both P0v3 so the vnet-integration floor holds). Single zone accepted by the user. Zone redundancy needs Premium v2 to v4, at least 2 instances and a scale unit that supports it (Microsoft Learn); P0v3 x2 was priced as the option in 02-sku-candidates.json. 1-year reservation applies to the Prod plan only ($508 term total, 1 Year). Premium v4 availability in swedencentral was not checked.",
       "source": "architect-derived",
       "source_step": "2",
@@ -77,14 +115,32 @@
       "id": "sql-db-core",
       "service": "SQL Database",
       "size": "S2",
-      "iac_logical_names": {"bicep": "sqlDbCore", "terraform": "module.sql_db_core"},
-      "capacity": {"mode": "fixed", "default": 1},
+      "iac_logical_names": {
+        "bicep": "sqlDbCore",
+        "terraform": "module.sql_db_core"
+      },
+      "capacity": {
+        "mode": "fixed",
+        "default": 1
+      },
       "zonal": false,
-      "regions": ["swedencentral"],
-      "environment_overrides": {"dev": {"size": "S0", "zonal": false}},
+      "regions": [
+        "swedencentral"
+      ],
+      "environment_overrides": {
+        "dev": {
+          "size": "S0",
+          "zonal": false
+        }
+      },
       "sla_target": "99.9%",
-      "commitment": {"type": "on-demand"},
-      "requires": ["private-endpoints", "managed-identity"],
+      "commitment": {
+        "type": "on-demand"
+      },
+      "requires": [
+        "private-endpoints",
+        "managed-identity"
+      ],
       "notes": "DTU Standard S2 for Prod (to be confirmed by a 500-user load test), DTU Standard S0 for Dev so the private-endpoints floor (SQL Standard or higher) holds. Entra-only auth, Local backup redundancy, PITR retention at most 30 days for the GDPR erasure window (Standard allows 1 to 35 days). DTU databases cannot be reserved and Basic/Standard DTU have no zone redundancy (Microsoft Learn).",
       "source": "architect-derived",
       "source_step": "2",

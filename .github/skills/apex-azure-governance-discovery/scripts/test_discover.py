@@ -725,6 +725,41 @@ def test_audit_and_disabled_excluded_from_findings_but_counted():
     assert env["discovery_summary"]["disabled_count"] == 1
 
 
+def test_audit_action_is_audit_class_not_unresolved():
+    # Built-in MFA policies parameterize the effect with default AuditAction.
+    definition = {
+        "id": "/providers/Microsoft.Authorization/policyDefinitions/mfa",
+        "name": "mfa",
+        "properties": {
+            "displayName": "MFA delete",
+            "parameters": {"effect": {"defaultValue": "AuditAction"}},
+            "policyRule": {
+                "if": {"field": "type", "equals": "Microsoft.Resources/subscriptions"},
+                "then": {"effect": "[parameters('effect')]"},
+            },
+        },
+    }
+    assignment = {
+        "id": "/subscriptions/s/providers/Microsoft.Authorization/policyAssignments/mfa",
+        "name": "mfa",
+        "properties": {
+            "displayName": "mfa",
+            "policyDefinitionId": definition["id"],
+            "scope": "/subscriptions/s",
+            "parameters": {"effect": {"value": "AuditAction"}},
+        },
+    }
+    mapping = {
+        "policyAssignments": {"value": [assignment]},
+        "/subscriptions/s/providers/Microsoft.Authorization/policyDefinitions": {"value": [definition]},
+        "/providers/Microsoft.Authorization/policyDefinitions": EMPTY,
+    }
+    env = discover.discover("s", project="p", az_rest=_router(mapping))
+    assert env["discovery_status"] == "COMPLETE"
+    assert env["findings"] == []
+    assert env["discovery_summary"]["audit_count"] == 1
+
+
 def test_pagination_follows_next_link():
     page1 = {
         "value": [

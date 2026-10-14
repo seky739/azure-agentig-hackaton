@@ -93,7 +93,7 @@ Only services with non-empty `environment_overrides` appear below.
 | ----- | ---- | ----- | ------------- | ------- | ------------- | ------ | ---------- |
 | `1` | `1` | `02-Requirements` | `2026-10-14T08:55:00Z` | Initial user pins: Storage Account replication pinned to LRS; no other SKU preferences. | `storage-data` | — | `nordic-foods:1:phase_5_artifact` |
 | `2` | `2` | `03-Architect` | `2026-10-14T11:40:00Z` | Architect-derived App Service plan (P0v3 Prod, B1 Dev) and SQL Database (DTU S2 Prod, Basic Dev), approved at the SKU confirmation gate; storage-data pin preserved. | `app-plan-web`, `sql-db-core` | — | `nordic-foods:2:phase_4_sku_authoring` |
-| `3` | `2` | `03-Architect` | `2026-10-14T12:45:00Z` | Accepted must-fix 4ba8c7d4: Dev App Service plan moves from B1 to P0v3 and Dev SQL from Basic to DTU S0 so the vnet-integration and private-endpoints feature floors hold; re-confirmed at the SKU gate. | `app-plan-web`, `sql-db-core` | — | `nordic-foods:2:phase_6_challenger_pass1` |
+| `3` | `2` | `03-Architect` | `2026-10-14T12:45:00Z` | Accepted must-fix 4ba8c7d4: Dev App Service plan moves from B1 to P0v3 and Dev SQL from Basic to DTU S0 so the vnet-integration and private-endpoints feature floors hold; re-confirmed at the SKU gate. | `app-plan-web`, `sql-db-core` | `d0e0050` | `nordic-foods:2:phase_6_challenger_pass1` |
 
 ## Open Substitutions
 
