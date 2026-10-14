@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "challenged_artifact": "agent-output/nordic-foods/03-des-cost-estimate.md",
+  "artifact_type": "cost-estimate",
+  "review_focus": "cost-feasibility",
+  "pass_number": 2,
+  "challenge_summary": "The revision resolves the prior SQL commitment finding: both selected SQL databases are DTU-based, and the cited Azure SQL reservation limitation establishes they are ineligible; the serverless vCore figure is disclosed as incomplete and not a comparable commitment case. The prior rounding discrepancy is also explained from unrounded worker totals. However, Dev is now a 730-hour/month P0v3 plan and its one-year commitment comparison is omitted without an evidenced rationale.",
+  "compact_for_parent": "Pass 2 (cost-feasibility) | MEDIUM | 0 must_fix, 1 should_fix | Key: Dev P0v3 commitment comparison missing",
+  "risk_level": "medium",
+  "must_fix_count": 0,
+  "should_fix_count": 1,
+  "suggestion_count": 0,
+  "findings": [
+    {
+      "id": "2e365dc5",
+      "severity": "should_fix",
+      "category": "scope_risk",
+      "claim": "Dev P0v3's one-year commitment comparison is missing",
+      "evidence": "The requirements' Budget Decision Rule calls for comparing pay-as-you-go with a one-year commitment for steady-state compute and SQL. The revised estimate prices Dev P0v3 at 1 instance x 730 hours/month, the same continuously billed SKU and utilization assumption as Prod, but quantifies the reservation only for Prod and says Dev is not planned for a commitment without showing the Dev term price, monthly equivalent, savings, or a reason that on-demand is preferable. The explicit DTU ineligibility rationale closes the prior SQL finding; it does not resolve the newly applicable Dev compute comparison.",
+      "impact": "The sponsor cannot compare the one-year commitment preference against the full steady-state compute spend; the estimate may understate available savings or leave an unsupported on-demand choice for the Dev plan.",
+      "artifact_section": "Savings Opportunities; Decision Summary → Deferred; Detailed Cost Breakdown → Assumptions",
+      "suggested_fix": {
+        "artifact_path": "agent-output/nordic-foods/03-des-cost-estimate.md",
+        "line_range": [200, 213],
+        "proposed_edit": "Add a one-year reservation comparison for the Dev P0v3 plan, with sourced term pricing, monthly equivalent, 730-hour utilization assumption, and savings/break-even; alternatively document why Dev is intentionally excluded from a commitment despite being priced at 730 hours/month. Keep any commitment savings outside the on-demand baseline total."
+      },
+      "traces_to": [],
+      "requires_step": "step-2",
+      "verification_anchors": [
+        "01-requirements.md: Budget Decision Rule requires one-year commitment comparison for steady-state compute and SQL",
+        "03-des-cost-estimate.md: Detailed Cost Breakdown → Line Items, Dev P0v3 at 1 instance x 730 h",
+        "03-des-cost-estimate.md: Savings Opportunities, Prod reservation quantified and Dev excluded without comparison",
+        "02-cost-estimate-v3.json: Dev P0v3 on-demand pricing and commitment exclusion",
+        "sku-manifest.json: app-plan-web P0v3 selection applies to both dev and prod"
+      ]
+    }
+  ],
+  "cache_inputs": {
+    "artifact_sha": "e2c649d013ad1a6848d832b140f3655919ed400d9a0e8165c8188b497e1ebef1",
+    "checklists_sha": "0300a75e3283490e9d1e64cb0ca32fba34d979e8e1665f4d63f17b0d2f08e25f",
+    "protocol_sha": "e3538fc4f5271ee0928a18048637392877fc42f57897824351940f06241cd091",
+    "subagent_sha": "c6b9c87f3ae8ca7019d9a2401a6798b0fb34374a1ee7c9c8c5f66a3344b071e1",
+    "model": "GPT-6 Luna (copilot)",
+    "artifact_hash": "56f5f189aceaa4db4def5ad3b411786f36cccd321577a4a80c41880a3aa2d0dd"
+  },
+  "supporting_inputs": [
+    {"path": "agent-output/nordic-foods/02-cost-estimate-v3.json", "sha256": "cf8580a70d6395b6dac4148df598c2da9f588ce9c680df6fdc40600e1f45027a"},
+    {"path": "agent-output/nordic-foods/02-cost-estimate-ancillary-v2.json", "sha256": "63abba7d6494eb8f86892c1872893ec5a472feb4ebf5ca4e92ec1aa2e732e856"},
+    {"path": "agent-output/nordic-foods/02-cost-estimate.json.retail-evidence/azure-dns.json", "sha256": "9e2b8c368e0ca813851d2e0e5c9bb4af143cbd2384cd92fd68505053d1a5a997"},
+    {"path": "agent-output/nordic-foods/02-sku-candidates.json", "sha256": "9901a5a725b588f2a804650038dabb792d16ecf3c54206059fe55736c856372b"},
+    {"path": "agent-output/nordic-foods/sku-manifest.json", "sha256": "6c3ab5a217ff18658103fff8444f920309d3c3d18244135951e40dd0049c9196"},
+    {"path": "agent-output/nordic-foods/01-requirements.md", "sha256": "843eb954c9b9080125192b3ce35eec0de2be4f455e02511ca38099af804b0052"},
+    {"path": "agent-output/nordic-foods/02-architecture-assessment.md", "sha256": "03667a7c146a11a3b485e8a4d761523fca0326d051b6505fef3a8024f3c3ec99"}
+  ]
+}

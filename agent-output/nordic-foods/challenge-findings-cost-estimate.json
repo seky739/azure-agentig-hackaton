@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "challenged_artifact": "agent-output/nordic-foods/03-des-cost-estimate.md",
+  "artifact_type": "cost-estimate",
+  "review_focus": "cost-feasibility",
+  "pass_number": 1,
+  "challenge_summary": "The prior runner-cost finding is closed: the estimate identifies the Azure-only scope, maps runner traffic to the already-priced endpoint and aggregate Private Link rows without double counting, and discloses GitHub-side charges as excluded and unestimated. Supplied COMPLETE worker totals reconcile to $348.773375/month and $4,185.2805/year, rounding to $348.77 and $4,185.28. The prior Dev P0v3 commitment comparison and reservation break-even findings are also present. No new cost-feasibility inconsistency was found.",
+  "compact_for_parent": "Pass 1 (cost-feasibility) | LOW | 0 must_fix, 0 should_fix | Key: none",
+  "risk_level": "low",
+  "must_fix_count": 0,
+  "should_fix_count": 0,
+  "suggestion_count": 0,
+  "findings": [],
+  "cache_inputs": {
+    "artifact_sha": "36a89e25bba48e00d8b4608272de4a11ad8fce077d29b89defd6cf8723b418b2",
+    "checklists_sha": "0300a75e3283490e9d1e64cb0ca32fba34d979e8e1665f4d63f17b0d2f08e25f",
+    "protocol_sha": "e3538fc4f5271ee0928a18048637392877fc42f57897824351940f06241cd091",
+    "subagent_sha": "c6b9c87f3ae8ca7019d9a2401a6798b0fb34374a1ee7c9c8c5f66a3344b071e1",
+    "model": "GPT-6 Luna (copilot)",
+    "artifact_hash": "a74d1a8bec2b6917aac3a82e7240c0dd38f677641e229c50e7832c6b39d1fc08"
+  },
+  "supporting_inputs": [
+    {
+      "path": "agent-output/nordic-foods/01-requirements.md",
+      "sha256": "843eb954c9b9080125192b3ce35eec0de2be4f455e02511ca38099af804b0052"
+    },
+    {
+      "path": "agent-output/nordic-foods/sku-manifest.json",
+      "sha256": "6c3ab5a217ff18658103fff8444f920309d3c3d18244135951e40dd0049c9196"
+    },
+    {
+      "path": "agent-output/nordic-foods/02-cost-estimate-v3.json",
+      "sha256": "cf8580a70d6395b6dac4148df598c2da9f588ce9c680df6fdc40600e1f45027a"
+    },
+    {
+      "path": "agent-output/nordic-foods/02-cost-estimate-ancillary-v2.json",
+      "sha256": "63abba7d6494eb8f86892c1872893ec5a472feb4ebf5ca4e92ec1aa2e732e856"
+    }
+  ]
+}

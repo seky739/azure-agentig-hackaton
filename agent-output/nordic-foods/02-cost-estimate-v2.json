@@ -1,0 +1,249 @@
+{
+  "status": "COMPLETE",
+  "project_name": "nordic-foods",
+  "region": "swedencentral",
+  "currency": "USD",
+  "monthly_total": 236.04241666,
+  "yearly_total": 2832.50899992,
+  "resources": [
+    {
+      "name": "app-plan-web / prod",
+      "service_name": "Azure App Service",
+      "sku": "P0v3 Linux",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": 0.089,
+      "monthly_cost": 64.97,
+      "notes": "Reused same-day Azure Resource Manager MCP Consumption meter evidence from 02-cost-estimate.json; queried_at=2026-10-14T11:34:38.871Z. Environment=prod; stamp=single; on-demand; productName=Azure App Service Premium v3 Plan - Linux; skuName=P0v3; meterName=P0v3 App; meterId=352d6efe-cb95-5ca9-82c9-e565bee16ddc; unitOfMeasure=1 Hour; priceType=Consumption; currency=USD. Usage=1 fixed plan instance x 730 hours/month. Calculation=$0.089/hour x 730 x 1=$64.97/month."
+    },
+    {
+      "name": "app-plan-web / dev",
+      "service_name": "Azure App Service",
+      "sku": "B1 Linux",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": 0.018,
+      "monthly_cost": 13.14,
+      "notes": "Reused same-day Azure Resource Manager MCP Consumption meter evidence from 02-cost-estimate.json; queried_at=2026-10-14T11:34:38.871Z. Environment=dev; stamp=single; on-demand; productName=Azure App Service Basic Plan - Linux; skuName=B1; meterName=B1; meterId not recorded in the prior estimate; unitOfMeasure=1 Hour; priceType=Consumption; currency=USD. Usage=1 fixed plan instance x 730 hours/month. Calculation=$0.018/hour x 730 x 1=$13.14/month. B1 is not reservation-eligible per the supplied official App Service pricing evidence."
+    },
+    {
+      "name": "sql-db-core / prod",
+      "service_name": "SQL Database",
+      "sku": "DTU Standard S2",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 73.60833333,
+      "notes": "Reused same-day Azure Resource Manager MCP Consumption meter evidence from 02-cost-estimate.json; queried_at=2026-10-14T11:34:38.871Z. Environment=prod; stamp=single; on-demand; productName=SQL Database Single Standard; skuName=S2; meterName=S2 DTUs; meterId=85b2411e-f258-5539-ab0b-e077b45b0df3; unitOfMeasure=1/Day; priceType=Consumption; currency=USD. Usage=1 database, per database; backup is within included capacity. Calculation=$2.42/day x 365/12 average-month days=$73.60833333/month."
+    },
+    {
+      "name": "sql-db-core / dev",
+      "service_name": "SQL Database",
+      "sku": "DTU Basic",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 4.89708333,
+      "notes": "Reused same-day Azure Resource Manager MCP Consumption meter evidence from 02-cost-estimate.json; queried_at=2026-10-14T11:34:38.871Z. Environment=dev; stamp=single; on-demand; productName=SQL Database Single Basic; skuName=B; meterName=B DTU; meterId=ed717c09-8bfb-58ad-9eeb-3d3f47e8fac9; unitOfMeasure=1/Day; priceType=Consumption; currency=USD. Usage=1 database, per database; backup is within included capacity. Calculation=$0.161/day x 365/12 average-month days=$4.89708333/month."
+    },
+    {
+      "name": "storage-data / prod",
+      "service_name": "Storage",
+      "sku": "Standard_LRS, Hot LRS, General Block Blob v2",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 2.7,
+      "notes": "Reused same-day Azure Resource Manager MCP Consumption meter evidence from 02-cost-estimate.json; queried_at=2026-10-14T11:34:38.871Z. Environment=prod; stamp=single; on-demand; productName=General Block Blob v2; skuName=Hot LRS; currency=USD. Usage is aggregate for this account, not multiplied by quantity: 100 GB stored/month, 100,000 write-class and 900,000 read-class operations/month; no egress. Meters: Hot LRS Data Stored, meterId=39d8c6c1-22c0-5719-9330-593a56b3a2e0, $0.0184 per 1 GB/Month; Hot LRS Write Operations, meterId=0ce2115f-eedc-5ac1-82ed-b0651b1d7e5b, $0.05 per 10K; Hot Read Operations, meterId=9f764feb-a8b0-5a2a-b7f4-0fd86cb48011, $0.004 per 10K. Calculation=100x$0.0184 + (100000/10000)x$0.05 + (900000/10000)x$0.004=$2.70/month."
+    },
+    {
+      "name": "storage-data / dev",
+      "service_name": "Storage",
+      "sku": "Standard_LRS, Hot LRS, General Block Blob v2",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 0.227,
+      "notes": "Reused same-day Azure Resource Manager MCP Consumption meter evidence from 02-cost-estimate.json; queried_at=2026-10-14T11:34:38.871Z. Environment=dev; stamp=single; on-demand; productName=General Block Blob v2; skuName=Hot LRS; currency=USD. Usage is aggregate for this account, not multiplied by quantity: 10 GB stored/month, 5,000 write-class and 45,000 read-class operations/month; no egress. Meters: Hot LRS Data Stored, meterId=39d8c6c1-22c0-5719-9330-593a56b3a2e0, $0.0184 per 1 GB/Month; Hot LRS Write Operations, meterId=0ce2115f-eedc-5ac1-82ed-b0651b1d7e5b, $0.05 per 10K; Hot Read Operations, meterId=9f764feb-a8b0-5a2a-b7f4-0fd86cb48011, $0.004 per 10K. Calculation=10x$0.0184 + (5000/10000)x$0.05 + (45000/10000)x$0.004=$0.227/month."
+    },
+    {
+      "name": "Private Endpoint hours / prod",
+      "service_name": "Virtual Network",
+      "sku": "Standard Private Endpoint",
+      "region": "swedencentral",
+      "quantity": 4,
+      "hourly_rate": 0.01,
+      "monthly_cost": 29.2,
+      "notes": "Reused same-day Azure Resource Manager MCP catalog row from 02-cost-estimate.json; queried_at=2026-10-14T11:34:38.871Z. Environment=prod; stamp=single; deployment region=swedencentral; billing region=Global. productName=Virtual Network Private Link; skuName=Standard; meterName=Standard Private Endpoint; meterId=e6ab7238-e433-4fe0-a2b2-2b2564df2cdb; unitOfMeasure=1 Hour; priceType=Consumption; currency=USD. Usage=4 endpoints x 730 hours/month, per endpoint. Calculation=4x730x$0.01=$29.20/month."
+    },
+    {
+      "name": "Private Endpoint hours / dev",
+      "service_name": "Virtual Network",
+      "sku": "Standard Private Endpoint",
+      "region": "swedencentral",
+      "quantity": 4,
+      "hourly_rate": 0.01,
+      "monthly_cost": 29.2,
+      "notes": "Reused same-day Azure Resource Manager MCP catalog row from 02-cost-estimate.json; queried_at=2026-10-14T11:34:38.871Z. Environment=dev; stamp=single; deployment region=swedencentral; billing region=Global. productName=Virtual Network Private Link; skuName=Standard; meterName=Standard Private Endpoint; meterId=e6ab7238-e433-4fe0-a2b2-2b2564df2cdb; unitOfMeasure=1 Hour; priceType=Consumption; currency=USD. Usage=4 endpoints x 730 hours/month, per endpoint. Calculation=4x730x$0.01=$29.20/month."
+    },
+    {
+      "name": "Private Endpoint hours / shared",
+      "service_name": "Virtual Network",
+      "sku": "Standard Private Endpoint",
+      "region": "swedencentral",
+      "quantity": 2,
+      "hourly_rate": 0.01,
+      "monthly_cost": 14.6,
+      "notes": "Reused same-day Azure Resource Manager MCP catalog row from 02-cost-estimate.json; queried_at=2026-10-14T11:34:38.871Z. Environment=shared (Container Registry and Terraform-state storage); stamp=single; deployment region=swedencentral; billing region=Global. productName=Virtual Network Private Link; skuName=Standard; meterName=Standard Private Endpoint; meterId=e6ab7238-e433-4fe0-a2b2-2b2564df2cdb; unitOfMeasure=1 Hour; priceType=Consumption; currency=USD. Usage=2 shared endpoints x 730 hours/month, per endpoint. Calculation=2x730x$0.01=$14.60/month."
+    },
+    {
+      "name": "Private Endpoint data processed / project aggregate",
+      "service_name": "Virtual Network",
+      "sku": "Standard Data Processed - Ingress and Egress",
+      "region": "swedencentral",
+      "quantity": 60,
+      "hourly_rate": null,
+      "monthly_cost": 0.6,
+      "notes": "Reused same-day Azure Resource Manager MCP catalog rows from 02-cost-estimate.json; queried_at=2026-10-14T11:34:38.871Z; billing region=Global, deployment region=swedencentral. productName=Virtual Network Private Link; skuName=Standard; ingress meterName=Standard Data Processed - Ingress, meterId=10caa28b-6479-4852-9eb7-610870cb6417, and egress meterName=Standard Data Processed - Egress, meterId=e7f162f6-7cb8-4cea-ad4f-12cdb5dda25b; each first tier is $0.01 per 1 GB, tierMinimumUnits=0; priceType=Consumption; currency=USD. Usage=60 GB/month aggregate across all 10 endpoints and all scopes, not per endpoint; split equally into 30 GB ingress and 30 GB egress. Tier bands are applied once to each directional aggregate; each is within the first band. Calculation=30x$0.01 + 30x$0.01=$0.60/month."
+    },
+    {
+      "name": "Private DNS hosted zones / shared",
+      "service_name": "Azure DNS",
+      "sku": "Private",
+      "region": "swedencentral",
+      "quantity": 5,
+      "hourly_rate": null,
+      "monthly_cost": 2.5,
+      "notes": "Reused direct Azure Retail Prices API fallback evidence from 02-cost-estimate.json.retail-evidence/azure-dns.json; original query timestamp=2026-10-14T11:34:38.871Z; original MCP exact and broad Azure DNS Consumption queries returned empty. productName=Azure DNS; skuName=Private; meterName=Private Zone; meterId=0b608a26-f611-4232-8192-ce81b6b57194; empty-region commercial record; unitOfMeasure=1 interpreted as per hosted zone per month based on official Azure DNS pricing page https://azure.microsoft.com/en-us/pricing/details/dns/ (parent-fetched 2026-10-14); priceType=Consumption; currency=USD. Usage=5 provisioned shared private zones for one month. Architect assumption: these are within the first 25 hosted-zone tier because no existing billing-scope zones are known; central zones may change the tier/allocation. First tier=$0.50 per zone-month; next tier begins at 25. Calculation=5x$0.50=$2.50/month."
+    },
+    {
+      "name": "Private DNS queries / shared",
+      "service_name": "Azure DNS",
+      "sku": "Private",
+      "region": "swedencentral",
+      "quantity": 1000000,
+      "hourly_rate": null,
+      "monthly_cost": 0.4,
+      "notes": "Reused direct Azure Retail Prices API fallback evidence from 02-cost-estimate.json.retail-evidence/azure-dns.json; original query timestamp=2026-10-14T11:34:38.871Z; original MCP exact and broad Azure DNS Consumption queries returned empty. productName=Azure DNS; skuName=Private; meterName=Private Queries; meterId=46cff9cb-4b15-4af0-bf41-25143827fef8; empty-region commercial record; unitOfMeasure=1M; priceType=Consumption; currency=USD. Usage=1,000,000 monthly queries aggregate across all five zones, not per zone. Official Azure DNS pricing page https://azure.microsoft.com/en-us/pricing/details/dns/ (parent-fetched 2026-10-14) states the first billion queries/month cost $0.40 per million. Calculation=(1,000,000/1,000,000)x$0.40=$0.40/month."
+    }
+  ],
+  "optimization_notes": [
+    "The monthly total includes all six manifest environment lines, ten Private Endpoint hourly charges, aggregate Private Link data processing, five shared private DNS zones and one million shared private DNS queries.",
+    "Private DNS zone cost assumes no pre-existing zones count toward the billing scope's first-25 tier; governance discovery may identify central zones and change the allocation or tier.",
+    "Reservation savings are a comparison against the on-demand baseline and are not deducted from monthly_total. The $508 one-year reservation term total is divided by 12; the official App Service pricing page's different-region monthly comparison corroborates the conversion only."
+  ],
+  "savings_status": "QUANTIFIED",
+  "savings_reason": "For the production Linux P0v3 plan only, the swedencentral 1 Year Reservation row from the same-day Azure Resource Manager MCP response reports retailPrice=USD 508 and reservationTerm=1 Year; Microsoft Learn Retail Prices API documentation states reservation retailPrice is the term total. Monthly equivalent=$508/12=$42.33333333. Compared with this estimate's P0v3 on-demand cost of $64.97/month, savings are $22.63666667/month ($271.64/year), or 34.84%. The official App Service Linux pricing page's $62.050/month pay-as-you-go versus $42.384/month 1-year reservation figures corroborate the term conversion but are a different-region reference, not the priced source. B1 is not reservation-eligible. P1v3 had no reservation row in the prior fresh swedencentral response and was not queried again.",
+  "eligible_strategies": [
+    {
+      "strategy": "1-year App Service reservation",
+      "sku": "P0v3 Linux",
+      "status": "QUANTIFIED",
+      "reservation_term": "1 Year",
+      "product_name": "Azure App Service Premium v3 Plan - Linux",
+      "meter_name": "P0v3 App",
+      "meter_id": "352d6efe-cb95-5ca9-82c9-e565bee16ddc",
+      "retail_price": 508,
+      "unit_of_measure": "1 Hour",
+      "currency": "USD",
+      "term_months": 12,
+      "reserved_monthly_equivalent": 42.33333333,
+      "on_demand_monthly_cost": 64.97,
+      "monthly_savings": 22.63666667,
+      "annual_savings": 271.64,
+      "savings_percent": 34.841,
+      "sources": [
+        "Azure Resource Manager MCP Reservation catalog row, queried_at=2026-10-14T11:34:38.871Z; retailPrice USD 508, reservationTerm 1 Year.",
+        "Microsoft Learn Retail Prices API overview: Reservation records include reservationTerm and retailPrice represents the term total.",
+        "Official Azure App Service Linux pricing page: different-region values of $62.050/month on demand and $42.384/month for a 1-year reservation corroborate the conversion; not used as the priced source."
+      ],
+      "calculation": "$508 / 12 = $42.33333333 per month; $64.97 - $42.33333333 = $22.63666667 monthly savings; x 12 = $271.64 annual savings."
+    },
+    {
+      "strategy": "App Service reservation for dev B1",
+      "sku": "B1 Linux",
+      "status": "NOT_ELIGIBLE",
+      "reason": "The supplied official App Service pricing evidence identifies Basic B1 as not reservation-eligible."
+    },
+    {
+      "strategy": "App Service reservation alternative",
+      "sku": "P1v3 Linux",
+      "status": "METER_NOT_FOUND",
+      "region": "swedencentral",
+      "note": "No P1v3 reservation row was present in the prior fresh regional Reservation response; no repeat query was made. This is not a price for the effective P0v3 SKU."
+    }
+  ],
+  "data_source": "Azure Resource Manager MCP + Azure Retail Prices API (direct fallback)",
+  "queried_at": "2026-10-14T11:34:38.871Z",
+  "confidence": "Medium",
+  "unresolved_items": [],
+  "mcp_calls_used": 0,
+  "direct_api_calls_used": 0,
+  "retail_api_evidence": [
+    {
+      "evidence_path": "/Users/seky/Downloads/azure-agentig-hackaton/agent-output/nordic-foods/02-cost-estimate.json.retail-evidence/azure-dns.json",
+      "resource_names": [
+        "Private DNS hosted zones / shared",
+        "Private DNS queries / shared"
+      ],
+      "selected_meters": [
+        {
+          "meter_id": "0b608a26-f611-4232-8192-ce81b6b57194",
+          "meter_name": "Private Zone",
+          "sku": "Private",
+          "billing_region": "empty-region commercial record",
+          "tier": [
+            {
+              "tier_minimum_units": 0,
+              "retail_price_usd": 0.5,
+              "unit_of_measure": "1"
+            },
+            {
+              "tier_minimum_units": 25,
+              "retail_price_usd": 0.1,
+              "unit_of_measure": "1"
+            }
+          ],
+          "calculation": "5 hosted zones x USD 0.50 per zone-month under the documented first-25 assumption = USD 2.50/month."
+        },
+        {
+          "meter_id": "46cff9cb-4b15-4af0-bf41-25143827fef8",
+          "meter_name": "Private Queries",
+          "sku": "Private",
+          "billing_region": "empty-region commercial record",
+          "tier": [
+            {
+              "tier_minimum_units": 0,
+              "retail_price_usd": 0.4,
+              "unit_of_measure": "1M"
+            }
+          ],
+          "calculation": "1,000,000 monthly queries / 1,000,000 x USD 0.40 = USD 0.40/month."
+        }
+      ],
+      "original_mcp_failure": "The prior same-day Azure DNS Consumption exact Private Zone, exact Private Queries and broad regional-unset queries returned empty results; see the referenced evidence file for actual request parameters, responses and hashes.",
+      "queried_at": "2026-10-14T11:34:38.871Z",
+      "response_sha256": "cfd3a1e7ffb641ba74ed25343afbf3a77e753d9678946354612174d984282c90",
+      "calculation": "Reused original validated direct-API evidence without issuing a new request; hosted-zone unit and query price interpretation are supported by the parent-supplied official Azure DNS pricing-page evidence."
+    }
+  ],
+  "manifest_writeback": [
+    {
+      "id": "app-plan-web",
+      "cost_estimate_monthly_usd": 78.11,
+      "cost_estimated_at": "2026-10-14T11:34:38.871Z"
+    },
+    {
+      "id": "sql-db-core",
+      "cost_estimate_monthly_usd": 78.50541666,
+      "cost_estimated_at": "2026-10-14T11:34:38.871Z"
+    },
+    {
+      "id": "storage-data",
+      "cost_estimate_monthly_usd": 2.927,
+      "cost_estimated_at": "2026-10-14T11:34:38.871Z"
+    }
+  ],
+  "manifest_writeback_applied": true,
+  "budget_exceeded": false
+}

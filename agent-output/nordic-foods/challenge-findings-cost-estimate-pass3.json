@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "challenged_artifact": "agent-output/nordic-foods/03-des-cost-estimate.md",
+  "artifact_type": "cost-estimate",
+  "review_focus": "cost-feasibility",
+  "pass_number": 3,
+  "challenge_summary": "Pass 2's Dev P0v3 comparison is now present, and the stated baseline/monthly and annual totals reconcile to the supplied COMPLETE worker JSONs. A cost-decision gap remains: the requirements and cost checklist call for commitment break-even, but neither the Prod reservation nor the derived Dev comparison states its break-even utilization. Using the documented figures, the threshold is 475.66 billable hours/month (65.16% of 730).",
+  "compact_for_parent": "Pass 3 (cost-feasibility) | MEDIUM | 0 must_fix, 1 should_fix | Key: Reservation utilization break-even is not stated",
+  "risk_level": "medium",
+  "must_fix_count": 0,
+  "should_fix_count": 1,
+  "suggestion_count": 0,
+  "findings": [
+    {
+      "id": "9d73ee18",
+      "severity": "should_fix",
+      "category": "untested_assumption",
+      "claim": "Reservation utilization break-even is not stated",
+      "evidence": "The pass-2 omission of a Dev comparison is closed: the estimate now derives the Dev P0v3 comparison from the identical SKU, region, meter and 730-hour utilization and excludes it from the baseline and selected-savings totals. However, the requirements call for break-even and utilization assumptions, and the cost-estimate checklist calls for commitment math including savings percentage and breakeven (or an explicit intentional pay-as-you-go rationale). The estimate states a $508 one-year reservation term, a $0.089/hour on-demand rate and 730 hours/month, but does not state the utilization break-even. From those documented rates, $508 / (12 x $0.089) = 475.66 billable hours/month, or 65.16% of 730 hours; this applies to both the Prod reservation and the identical Dev comparison.",
+      "impact": "A sponsor could compare savings at full utilization but miss when a one-year commitment ceases to be cheaper. Below approximately 476 hours/month, the on-demand equivalent is less than the stated $42.33/month reservation equivalent, which can change the commitment decision and budget outlook.",
+      "artifact_section": "Savings Opportunities; Detailed Cost Breakdown → Assumptions",
+      "suggested_fix": {
+        "artifact_path": "agent-output/nordic-foods/03-des-cost-estimate.md",
+        "line_range": [212, 220],
+        "proposed_edit": "Add the break-even utilization to the reservation comparison: using $508 for 12 months and $0.089/hour, break-even is 475.66 billable hours/month (65.16% of the 730-hour assumption); below that usage, pay-as-you-go is cheaper. State that this threshold applies to the derived Dev comparison as well, while keeping its hypothetical savings excluded from totals."
+      },
+      "traces_to": ["2e365dc5"],
+      "requires_step": "step-2",
+      "verification_anchors": [
+        "01-requirements.md: Budget Decision Rule requires one-year commitment comparison for steady-state compute and SQL with break-even and utilization assumptions (line 255)",
+        "adversarial-checklists.md: Cost-Estimate-Specific requires 1-year compute commitment math including savings percentage and breakeven or an intentional pay-as-you-go note (line 113)",
+        "03-des-cost-estimate.md: Savings Opportunities, Prod P0v3 reservation term, monthly equivalent and savings (line 212)",
+        "03-des-cost-estimate.md: Savings Opportunities, derived Dev P0v3 comparison and exclusion from totals (line 214)",
+        "03-des-cost-estimate.md: Detailed Cost Breakdown → Assumptions, 730 hours/month basis (line 220)",
+        "02-cost-estimate-v3.json: Prod and Dev P0v3 $0.089/hour rates and Prod $508 reservation term",
+        "sku-manifest.json: app-plan-web P0v3 applies to Dev and Prod"
+      ]
+    }
+  ],
+  "cache_inputs": {
+    "artifact_sha": "bf07d3f99b3866060035176b9c8f34c902481acaf674fa86b8abdb8432dff231",
+    "checklists_sha": "0300a75e3283490e9d1e64cb0ca32fba34d979e8e1665f4d63f17b0d2f08e25f",
+    "protocol_sha": "e3538fc4f5271ee0928a18048637392877fc42f57897824351940f06241cd091",
+    "subagent_sha": "c6b9c87f3ae8ca7019d9a2401a6798b0fb34374a1ee7c9c8c5f66a3344b071e1",
+    "model": "GPT-6 Luna (copilot)",
+    "artifact_hash": "c37f2cc681fd8a81bb6bfb85b7747289e58a080f903c124a2d45c251b7ff4684"
+  },
+  "supporting_inputs": [
+    {
+      "path": "agent-output/nordic-foods/01-requirements.md",
+      "sha256": "843eb954c9b9080125192b3ce35eec0de2be4f455e02511ca38099af804b0052"
+    },
+    {
+      "path": "agent-output/nordic-foods/sku-manifest.json",
+      "sha256": "6c3ab5a217ff18658103fff8444f920309d3c3d18244135951e40dd0049c9196"
+    },
+    {
+      "path": "agent-output/nordic-foods/02-cost-estimate-v3.json",
+      "sha256": "cf8580a70d6395b6dac4148df598c2da9f588ce9c680df6fdc40600e1f45027a"
+    },
+    {
+      "path": "agent-output/nordic-foods/02-cost-estimate-ancillary-v2.json",
+      "sha256": "63abba7d6494eb8f86892c1872893ec5a472feb4ebf5ca4e92ec1aa2e732e856"
+    }
+  ]
+}

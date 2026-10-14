@@ -1,0 +1,60 @@
+{
+  "schema_version": "retail-price-evidence-v1",
+  "data_source": "Azure Retail Prices API (direct fallback)",
+  "query": {
+    "serviceName": "Azure DNS",
+    "meterName": "Private Zone",
+    "priceType": "Consumption",
+    "currencyCode": "USD"
+  },
+  "mcp_failure": {
+    "kind": "empty_result",
+    "recorded_at": "2026-10-14T11:32:27.831Z",
+    "attempts": [
+      {
+        "query": {
+          "serviceName": "Azure DNS",
+          "meterName": "Private Zone",
+          "priceType": "Consumption",
+          "currencyCode": "USD"
+        },
+        "response": {
+          "result": {
+            "BillingCurrency": "USD",
+            "CustomerEntityId": "Default",
+            "CustomerEntityType": "Retail",
+            "Items": [],
+            "NextPageLink": null,
+            "Count": 0
+          }
+        }
+      },
+      {
+        "query": {
+          "serviceName": "Azure DNS",
+          "priceType": "Consumption",
+          "currencyCode": "USD"
+        },
+        "response": {
+          "result": {
+            "BillingCurrency": "USD",
+            "CustomerEntityId": "Default",
+            "CustomerEntityType": "Retail",
+            "Items": [],
+            "NextPageLink": null,
+            "Count": 0
+          }
+        }
+      }
+    ]
+  },
+  "requests_used": 1,
+  "pages": [
+    {
+      "url": "https://prices.azure.com/api/retail/prices?%24filter=serviceName+eq+%27Azure+DNS%27+and+meterName+eq+%27Private+Zone%27+and+priceType+eq+%27Consumption%27&currencyCode=USD",
+      "queried_at": "2026-10-14T11:32:51.249Z",
+      "response_sha256": "352fc68a291f791c2f6ec6cc3b0f0c47b596b0e1f70c16df072a4bb608ec367f",
+      "raw_response": "{\"BillingCurrency\":\"USD\",\"CustomerEntityId\":\"Default\",\"CustomerEntityType\":\"Retail\",\"Items\":[{\"currencyCode\":\"USD\",\"tierMinimumUnits\":0.0,\"retailPrice\":0.5,\"unitPrice\":0.5,\"armRegionName\":\"\",\"location\":\"\",\"effectiveStartDate\":\"2019-12-01T00:00:00Z\",\"meterId\":\"0b608a26-f611-4232-8192-ce81b6b57194\",\"meterName\":\"Private Zone\",\"productId\":\"DZH318Z0BNX0\",\"skuId\":\"DZH318Z0BNX0/0021\",\"productName\":\"Azure DNS\",\"skuName\":\"Private\",\"serviceName\":\"Azure DNS\",\"serviceId\":\"DZH318Z695ZG\",\"serviceFamily\":\"Networking\",\"unitOfMeasure\":\"1\",\"type\":\"Consumption\",\"isPrimaryMeterRegion\":true,\"armSkuName\":\"\"},{\"currencyCode\":\"USD\",\"tierMinimumUnits\":25.0,\"retailPrice\":0.1,\"unitPrice\":0.1,\"armRegionName\":\"\",\"location\":\"\",\"effectiveStartDate\":\"2019-12-01T00:00:00Z\",\"meterId\":\"0b608a26-f611-4232-8192-ce81b6b57194\",\"meterName\":\"Private Zone\",\"productId\":\"DZH318Z0BNX0\",\"skuId\":\"DZH318Z0BNX0/0021\",\"productName\":\"Azure DNS\",\"skuName\":\"Private\",\"serviceName\":\"Azure DNS\",\"serviceId\":\"DZH318Z695ZG\",\"serviceFamily\":\"Networking\",\"unitOfMeasure\":\"1\",\"type\":\"Consumption\",\"isPrimaryMeterRegion\":true,\"armSkuName\":\"\"},{\"currencyCode\":\"USD\",\"tierMinimumUnits\":0.0,\"retailPrice\":0.5,\"unitPrice\":0.5,\"armRegionName\":\"Zone 1\",\"location\":\"Zone 1\",\"effectiveStartDate\":\"2019-12-01T00:00:00Z\",\"meterId\":\"0b608a26-f611-4232-8192-ce81b6b57194\",\"meterName\":\"Private Zone\",\"productId\":\"DZH318Z0BNX0\",\"skuId\":\"DZH318Z0BNX0/001L\",\"productName\":\"Azure DNS\",\"skuName\":\"Private\",\"serviceName\":\"Azure DNS\",\"serviceId\":\"DZH318Z695ZG\",\"serviceFamily\":\"Networking\",\"unitOfMeasure\":\"1\",\"type\":\"Consumption\",\"isPrimaryMeterRegion\":false,\"armSkuName\":\"\"},{\"currencyCode\":\"USD\",\"tierMinimumUnits\":25.0,\"retailPrice\":0.1,\"unitPrice\":0.1,\"armRegionName\":\"Zone 1\",\"location\":\"Zone 1\",\"effectiveStartDate\":\"2019-12-01T00:00:00Z\",\"meterId\":\"0b608a26-f611-4232-8192-ce81b6b57194\",\"meterName\":\"Private Zone\",\"productId\":\"DZH318Z0BNX0\",\"skuId\":\"DZH318Z0BNX0/001L\",\"productName\":\"Azure DNS\",\"skuName\":\"Private\",\"serviceName\":\"Azure DNS\",\"serviceId\":\"DZH318Z695ZG\",\"serviceFamily\":\"Networking\",\"unitOfMeasure\":\"1\",\"type\":\"Consumption\",\"isPrimaryMeterRegion\":false,\"armSkuName\":\"\"},{\"currencyCode\":\"USD\",\"tierMinimumUnits\":0.0,\"retailPrice\":0.5,\"unitPrice\":0.5,\"armRegionName\":\"Zone 3\",\"location\":\"Zone 3\",\"effectiveStartDate\":\"2019-12-01T00:00:00Z\",\"meterId\":\"0b608a26-f611-4232-8192-ce81b6b57194\",\"meterName\":\"Private Zone\",\"productId\":\"DZH318Z0BNX0\",\"skuId\":\"DZH318Z0BNX0/001N\",\"productName\":\"Azure DNS\",\"skuName\":\"Private\",\"serviceName\":\"Azure DNS\",\"serviceId\":\"DZH318Z695ZG\",\"serviceFamily\":\"Networking\",\"unitOfMeasure\":\"1\",\"type\":\"Consumption\",\"isPrimaryMeterRegion\":false,\"armSkuName\":\"\"},{\"currencyCode\":\"USD\",\"tierMinimumUnits\":25.0,\"retailPrice\":0.1,\"unitPrice\":0.1,\"armRegionName\":\"Zone 3\",\"location\":\"Zone 3\",\"effectiveStartDate\":\"2019-12-01T00:00:00Z\",\"meterId\":\"0b608a26-f611-4232-8192-ce81b6b57194\",\"meterName\":\"Private Zone\",\"productId\":\"DZH318Z0BNX0\",\"skuId\":\"DZH318Z0BNX0/001N\",\"productName\":\"Azure DNS\",\"skuName\":\"Private\",\"serviceName\":\"Azure DNS\",\"serviceId\":\"DZH318Z695ZG\",\"serviceFamily\":\"Networking\",\"unitOfMeasure\":\"1\",\"type\":\"Consumption\",\"isPrimaryMeterRegion\":false,\"armSkuName\":\"\"},{\"currencyCode\":\"USD\",\"tierMinimumUnits\":0.0,\"retailPrice\":0.5,\"unitPrice\":0.5,\"armRegionName\":\"Zone 2\",\"location\":\"Zone 2\",\"effectiveStartDate\":\"2019-12-01T00:00:00Z\",\"meterId\":\"0b608a26-f611-4232-8192-ce81b6b57194\",\"meterName\":\"Private Zone\",\"productId\":\"DZH318Z0BNX0\",\"skuId\":\"DZH318Z0BNX0/001K\",\"productName\":\"Azure DNS\",\"skuName\":\"Private\",\"serviceName\":\"Azure DNS\",\"serviceId\":\"DZH318Z695ZG\",\"serviceFamily\":\"Networking\",\"unitOfMeasure\":\"1\",\"type\":\"Consumption\",\"isPrimaryMeterRegion\":false,\"armSkuName\":\"\"},{\"currencyCode\":\"USD\",\"tierMinimumUnits\":25.0,\"retailPrice\":0.1,\"unitPrice\":0.1,\"armRegionName\":\"Zone 2\",\"location\":\"Zone 2\",\"effectiveStartDate\":\"2019-12-01T00:00:00Z\",\"meterId\":\"0b608a26-f611-4232-8192-ce81b6b57194\",\"meterName\":\"Private Zone\",\"productId\":\"DZH318Z0BNX0\",\"skuId\":\"DZH318Z0BNX0/001K\",\"productName\":\"Azure DNS\",\"skuName\":\"Private\",\"serviceName\":\"Azure DNS\",\"serviceId\":\"DZH318Z695ZG\",\"serviceFamily\":\"Networking\",\"unitOfMeasure\":\"1\",\"type\":\"Consumption\",\"isPrimaryMeterRegion\":false,\"armSkuName\":\"\"},{\"currencyCode\":\"USD\",\"tierMinimumUnits\":0.0,\"retailPrice\":0.63,\"unitPrice\":0.63,\"armRegionName\":\"US Gov Zone 1\",\"location\":\"US Gov Zone 1\",\"effectiveStartDate\":\"2020-02-01T00:00:00Z\",\"meterId\":\"b733d8b4-8e40-40c2-835f-6303a7c45e53\",\"meterName\":\"Private Zone\",\"productId\":\"DZH318Z0BNX0\",\"skuId\":\"DZH318Z0BNX0/001T\",\"productName\":\"Azure DNS\",\"skuName\":\"Private\",\"serviceName\":\"Azure DNS\",\"serviceId\":\"DZH318Z695ZG\",\"serviceFamily\":\"Networking\",\"unitOfMeasure\":\"1\",\"type\":\"Consumption\",\"isPrimaryMeterRegion\":true,\"armSkuName\":\"\"},{\"currencyCode\":\"USD\",\"tierMinimumUnits\":25.0,\"retailPrice\":0.13,\"unitPrice\":0.13,\"armRegionName\":\"US Gov Zone 1\",\"location\":\"US Gov Zone 1\",\"effectiveStartDate\":\"2020-02-01T00:00:00Z\",\"meterId\":\"b733d8b4-8e40-40c2-835f-6303a7c45e53\",\"meterName\":\"Private Zone\",\"productId\":\"DZH318Z0BNX0\",\"skuId\":\"DZH318Z0BNX0/001T\",\"productName\":\"Azure DNS\",\"skuName\":\"Private\",\"serviceName\":\"Azure DNS\",\"serviceId\":\"DZH318Z695ZG\",\"serviceFamily\":\"Networking\",\"unitOfMeasure\":\"1\",\"type\":\"Consumption\",\"isPrimaryMeterRegion\":true,\"armSkuName\":\"\"},{\"currencyCode\":\"USD\",\"tierMinimumUnits\":0.0,\"retailPrice\":0.5,\"unitPrice\":0.5,\"armRegionName\":\"Zone 4\",\"location\":\"Zone 4\",\"effectiveStartDate\":\"2019-12-01T00:00:00Z\",\"meterId\":\"0b608a26-f611-4232-8192-ce81b6b57194\",\"meterName\":\"Private Zone\",\"productId\":\"DZH318Z0BNX0\",\"skuId\":\"DZH318Z0BNX0/0023\",\"productName\":\"Azure DNS\",\"skuName\":\"Private\",\"serviceName\":\"Azure DNS\",\"serviceId\":\"DZH318Z695ZG\",\"serviceFamily\":\"Networking\",\"unitOfMeasure\":\"1\",\"type\":\"Consumption\",\"isPrimaryMeterRegion\":false,\"armSkuName\":\"\"},{\"currencyCode\":\"USD\",\"tierMinimumUnits\":25.0,\"retailPrice\":0.1,\"unitPrice\":0.1,\"armRegionName\":\"Zone 4\",\"location\":\"Zone 4\",\"effectiveStartDate\":\"2019-12-01T00:00:00Z\",\"meterId\":\"0b608a26-f611-4232-8192-ce81b6b57194\",\"meterName\":\"Private Zone\",\"productId\":\"DZH318Z0BNX0\",\"skuId\":\"DZH318Z0BNX0/0023\",\"productName\":\"Azure DNS\",\"skuName\":\"Private\",\"serviceName\":\"Azure DNS\",\"serviceId\":\"DZH318Z695ZG\",\"serviceFamily\":\"Networking\",\"unitOfMeasure\":\"1\",\"type\":\"Consumption\",\"isPrimaryMeterRegion\":false,\"armSkuName\":\"\"}],\"NextPageLink\":null,\"Count\":12}"
+    }
+  ]
+}

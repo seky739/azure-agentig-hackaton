@@ -1,0 +1,189 @@
+{
+  "status": "FAILED",
+  "project_name": "nordic-foods",
+  "region": "swedencentral",
+  "currency": "USD",
+  "monthly_total": 124.6758,
+  "yearly_total": 1496.1096,
+  "resources": [
+    {
+      "name": "Container Registry (Shared: Dev + Prod)",
+      "service_name": "Container Registry",
+      "sku": "Premium",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 50.6924,
+      "notes": "MCP; productName=Container Registry; skuName=Premium; meterName=Premium Registry Unit; meterId=2f8e1105-47d0-4105-a934-b2175c766a71; unitOfMeasure=1/Day; priceType=Consumption; currency=USD; Shared by Dev and Prod, one registry; no storage overage, geo-replication, or tasks. Calculation: $1.6666/day * (730 hours / 24) = $50.6924; 730-hour month converted to 30.4167 billable days."
+    },
+    {
+      "name": "Key Vault Operations (Prod)",
+      "service_name": "Key Vault",
+      "sku": "Standard",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 0.3,
+      "notes": "MCP; productName=Key Vault; skuName=Standard; meterName=Operations; meterId=0f824807-2376-435c-95c9-f992b67a07b0; unitOfMeasure=10K; priceType=Consumption; currency=USD. Prod, one vault; 100000 secret/general operations/month aggregate for this vault. Calculation: 100000 / 10000 * $0.03 = $0.30. No HSM keys or certificate renewals."
+    },
+    {
+      "name": "Key Vault Operations (Dev)",
+      "service_name": "Key Vault",
+      "sku": "Standard",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 0.06,
+      "notes": "MCP; productName=Key Vault; skuName=Standard; meterName=Operations; meterId=0f824807-2376-435c-95c9-f992b67a07b0; unitOfMeasure=10K; priceType=Consumption; currency=USD. Dev, one vault; 20000 secret/general operations/month aggregate for this vault. Calculation: 20000 / 10000 * $0.03 = $0.06. No HSM keys or certificate renewals."
+    },
+    {
+      "name": "Private Endpoints and Data Processing (Prod)",
+      "service_name": "Virtual Network",
+      "sku": "Standard Private Endpoint",
+      "region": "swedencentral",
+      "quantity": 4,
+      "hourly_rate": 0.01,
+      "monthly_cost": 29.7,
+      "notes": "MCP; productName=Virtual Network Private Link; skuName=Standard; endpoint meterName=Standard Private Endpoint, meterId=e6ab7238-e433-4fe0-a2b2-2b2564df2cdb, unit=1 Hour, $0.01/hour; data meters Standard Data Processed - Ingress meterId=10caa28b-6479-4852-9eb7-610870cb6417 and Standard Data Processed - Egress meterId=e7f162f6-7cb8-4cea-ad4f-12cdb5dda25b, each $0.01/GB in the first tier. Billing region Global; deployment region remains swedencentral. Prod, 4 endpoints * 730 hours; 50 GB/month aggregate across endpoints, split 25 GB ingress and 25 GB egress (not per endpoint). Calculation: 4*730*$0.01 + 25*$0.01 + 25*$0.01 = $29.70."
+    },
+    {
+      "name": "Private Endpoints and Data Processing (Dev)",
+      "service_name": "Virtual Network",
+      "sku": "Standard Private Endpoint",
+      "region": "swedencentral",
+      "quantity": 4,
+      "hourly_rate": 0.01,
+      "monthly_cost": 29.25,
+      "notes": "MCP; productName=Virtual Network Private Link; skuName=Standard; endpoint meterName=Standard Private Endpoint, meterId=e6ab7238-e433-4fe0-a2b2-2b2564df2cdb, unit=1 Hour, $0.01/hour; data meters Standard Data Processed - Ingress meterId=10caa28b-6479-4852-9eb7-610870cb6417 and Standard Data Processed - Egress meterId=e7f162f6-7cb8-4cea-ad4f-12cdb5dda25b, each $0.01/GB in the first tier. Billing region Global; deployment region remains swedencentral. Dev, 4 endpoints * 730 hours; 5 GB/month aggregate across endpoints, split 2.5 GB ingress and 2.5 GB egress (not per endpoint). Calculation: 4*730*$0.01 + 2.5*$0.01 + 2.5*$0.01 = $29.25."
+    },
+    {
+      "name": "Private Endpoints and Data Processing (Shared)",
+      "service_name": "Virtual Network",
+      "sku": "Standard Private Endpoint",
+      "region": "swedencentral",
+      "quantity": 2,
+      "hourly_rate": 0.01,
+      "monthly_cost": 14.65,
+      "notes": "MCP; productName=Virtual Network Private Link; skuName=Standard; endpoint meterName=Standard Private Endpoint, meterId=e6ab7238-e433-4fe0-a2b2-2b2564df2cdb, unit=1 Hour, $0.01/hour; data meters Standard Data Processed - Ingress meterId=10caa28b-6479-4852-9eb7-610870cb6417 and Standard Data Processed - Egress meterId=e7f162f6-7cb8-4cea-ad4f-12cdb5dda25b, each $0.01/GB in the first tier. Billing region Global; deployment region remains swedencentral. Shared Terraform-state and registry endpoints, 2 * 730 hours; 5 GB/month aggregate, split 2.5 GB ingress and 2.5 GB egress (not per endpoint). Calculation: 2*730*$0.01 + 2.5*$0.01 + 2.5*$0.01 = $14.65."
+    },
+    {
+      "name": "Private DNS Hosted Zones (Shared)",
+      "service_name": "Azure DNS",
+      "sku": "Private",
+      "region": "swedencentral",
+      "quantity": 5,
+      "hourly_rate": null,
+      "monthly_cost": null,
+      "notes": "Direct Retail Prices API fallback evidence: private-zone-evidence.json; productName=Azure DNS; skuName=Private; meterName=Private Zone; meterId=0b608a26-f611-4232-8192-ce81b6b57194; empty-region commercial catalog record; unitOfMeasure=1, interpreted as per hosted zone-month per the official Azure DNS pricing page; priceType=Consumption; currency=USD. Five shared zones for the full month. Catalog tiers are $0.50 per zone for tierMinimumUnits=0 and $0.10 for tierMinimumUnits=25. Cannot calculate until existing private-zone count in the applicable billing scope is known; do not assume the first tier."
+    },
+    {
+      "name": "Private DNS Queries (Shared)",
+      "service_name": "Azure DNS",
+      "sku": "Private",
+      "region": "swedencentral",
+      "quantity": 1000000,
+      "hourly_rate": null,
+      "monthly_cost": null,
+      "notes": "Direct Retail Prices API fallback evidence: private-queries-evidence.json; productName=Azure DNS; skuName=Private; meterName=Private Queries; unitOfMeasure=1M; priceType=Consumption; currency=USD. One million queries/month aggregate across all five zones, not per zone. Returned commercial rows are named billing-zone records (the observed Zone 1 record is $0.40 per 1M); no empty-region row was returned and the applicable billing zone for swedencentral could not be verified from the required official pricing documentation, so no price is selected."
+    },
+    {
+      "name": "Log Analytics Ingestion (Prod)",
+      "service_name": "Log Analytics",
+      "sku": "Analytics Logs",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 0,
+      "notes": "MCP; productName=Log Analytics; skuName=Analytics Logs; meterName=Analytics Logs Data Ingestion; meterId=e3669cc9-19b6-55fc-b9fe-782ab83615ab; unitOfMeasure=1 GB; priceType=Consumption; currency=USD. Prod workspace, 5 GB/month aggregate including workspace-based Application Insights ingestion. Returned zero-price tierMinimumUnits=0 applies through 5 GB; calculation: 5 GB * $0/GB = $0. No retention charge beyond the included 30-day period."
+    },
+    {
+      "name": "Log Analytics Ingestion (Dev)",
+      "service_name": "Log Analytics",
+      "sku": "Analytics Logs",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 0,
+      "notes": "MCP; productName=Log Analytics; skuName=Analytics Logs; meterName=Analytics Logs Data Ingestion; meterId=e3669cc9-19b6-55fc-b9fe-782ab83615ab; unitOfMeasure=1 GB; priceType=Consumption; currency=USD. Dev workspace, 1 GB/month aggregate including workspace-based Application Insights ingestion. Returned zero-price tierMinimumUnits=0 applies through 5 GB; calculation: 1 GB * $0/GB = $0. No retention charge beyond the included 30-day period."
+    },
+    {
+      "name": "Terraform State Blob Capacity (Shared)",
+      "service_name": "Storage",
+      "sku": "Standard_LRS Hot StorageV2 Block Blob",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 0.0184,
+      "notes": "MCP; productName=General Block Blob v2; skuName=Hot LRS; meterName=Hot LRS Data Stored; meterId=39d8c6c1-22c0-5719-9330-593a56b3a2e0; catalog armSkuName empty; unitOfMeasure=1 GB/Month; priceType=Consumption; currency=USD. Shared Terraform state, 1 GB stored for the month. Calculation: 1 GB * $0.0184/GB-month = $0.0184."
+    },
+    {
+      "name": "Terraform State Blob Write Operations (Shared)",
+      "service_name": "Storage",
+      "sku": "Standard_LRS Hot StorageV2 Block Blob",
+      "region": "swedencentral",
+      "quantity": 1000,
+      "hourly_rate": null,
+      "monthly_cost": 0.005,
+      "notes": "MCP; productName=General Block Blob v2; skuName=Hot LRS; meterName=Hot LRS Write Operations; meterId=0ce2115f-eedc-5ac1-82ed-b0651b1d7e5b; unitOfMeasure=10K; priceType=Consumption; currency=USD. Shared; 10000 operations/month total, with 10% write-class = 1000 operations aggregate. Calculation: 1000/10000 * $0.05 = $0.005."
+    },
+    {
+      "name": "Terraform State Blob Read Operations (Shared)",
+      "service_name": "Storage",
+      "sku": "Standard_LRS Hot StorageV2 Block Blob",
+      "region": "swedencentral",
+      "quantity": 9000,
+      "hourly_rate": null,
+      "monthly_cost": null,
+      "notes": "Unresolved. The MCP query for serviceName=Storage, armRegionName=swedencentral, meterName=Hot LRS Read Operations returned only a General Block Blob v2 Hierarchical Namespace row (skuName=Hot LRS, $0.0052/10K), not the requested General Block Blob v2 product. Do not substitute the HNS rate. Shared; 9000 read-class operations/month aggregate (90% of 10000)."
+    }
+  ],
+  "optimization_notes": [
+    "monthly_total and yearly_total are resolved-line subtotals only; unresolved private DNS zone, private DNS query, and Blob read-operation charges are excluded.",
+    "Excluded as instructed: Entra External ID, VNet/NSG/subnets, GitHub-hosted runner minutes, Application Gateway, Front Door, and WAF."
+  ],
+  "savings_status": "NOT_QUANTIFIED",
+  "savings_reason": "This run prices baseline consumption only; savings and commitment strategies were not requested.",
+  "eligible_strategies": [],
+  "data_source": "Azure Resource Manager MCP + Azure Retail Prices API (direct fallback)",
+  "queried_at": "2026-10-14T11:35:03.897Z",
+  "confidence": "Low",
+  "unresolved_items": [
+    "Private DNS Hosted Zones (Shared): existing private-zone count in the applicable billing scope is missing, so the correct zone-count tier cannot be selected.",
+    "Private DNS Queries (Shared): returned query meters are named billing-zone records; the applicable billing zone for swedencentral could not be verified, so Zone 1 is not selected.",
+    "Terraform State Blob Read Operations (Shared): no matching Hot LRS Read Operations meter was returned for General Block Blob v2; the only returned row was for Hierarchical Namespace."
+  ],
+  "mcp_calls_used": 14,
+  "direct_api_calls_used": 2,
+  "retail_api_evidence": [
+    {
+      "evidence_path": "/Users/seky/Downloads/azure-agentig-hackaton/agent-output/nordic-foods/02-cost-estimate-ancillary.json.retail-evidence/private-zone-evidence.json",
+      "resource_names": ["Private DNS Hosted Zones (Shared)"],
+      "selected_meters": [
+        {
+          "meter_id": "0b608a26-f611-4232-8192-ce81b6b57194",
+          "sku": "Private",
+          "billing_region": "",
+          "tier": [
+            {"tierMinimumUnits": 0, "retailPrice": 0.5},
+            {"tierMinimumUnits": 25, "retailPrice": 0.1}
+          ]
+        }
+      ],
+      "calculation": "Not totaled: 5 planned zones are known, but existing zones in the applicable billing scope are unknown. The evidence records 1 unit per tiered zone meter; see estimate notes for the required zone-month interpretation."
+    },
+    {
+      "evidence_path": "/Users/seky/Downloads/azure-agentig-hackaton/agent-output/nordic-foods/02-cost-estimate-ancillary.json.retail-evidence/private-queries-evidence.json",
+      "resource_names": ["Private DNS Queries (Shared)"],
+      "selected_meters": [
+        {
+          "meter_id": "46cff9cb-4b15-4af0-bf41-25143827fef8",
+          "sku": "Private",
+          "billing_region": "Zone 1",
+          "tier": [{"tierMinimumUnits": 0, "retailPrice": 0.4}]
+        }
+      ],
+      "calculation": "Not totaled: 1,000,000 queries is one 1M unit, but Zone 1 applicability to swedencentral was not established."
+    }
+  ],
+  "budget_exceeded": false
+}

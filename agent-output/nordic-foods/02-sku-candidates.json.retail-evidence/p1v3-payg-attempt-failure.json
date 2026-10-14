@@ -1,0 +1,17 @@
+{
+  "status": "NO_MATCHING_METERS",
+  "recorded_at": "2026-10-14T11:02:50Z",
+  "request_path": "/Users/seky/Downloads/azure-agentig-hackaton/agent-output/nordic-foods/02-sku-candidates.json.retail-evidence/p1v3-payg-request.json",
+  "query": {
+    "serviceName": "Azure App Service",
+    "armRegionName": "swedencentral",
+    "meterName": "P1v3 App",
+    "priceType": "Consumption",
+    "currencyCode": "USD"
+  },
+  "direct_api_requests_used": 1,
+  "helper": "tools/scripts/fetch-retail-price-evidence.mjs",
+  "outcome": "Retail fallback FAILED: No retail meters returned",
+  "evidence_file_written": false,
+  "pricing_conclusion": "No direct Retail Prices API row was available to price P1v3 PAYG."
+}

@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0",
+  "challenged_artifact": "agent-output/nordic-foods/02-architecture-assessment.md",
+  "artifact_type": "architecture",
+  "review_focus": "comprehensive",
+  "pass_number": 1,
+  "challenge_summary": "The previous accepted items remain correctly represented: the 99.9% sponsor gate is open; availability, latency and database alert rows and Step 4 threshold assumptions are present; the confirmed runner subnet 10.0.0.192/27 is recorded with concurrency follow-up; and P0v3 x2 is explicitly not claimed as zone redundant. The $348.77/month total reconciles to the supplied COMPLETE estimate files. GDPR field mapping, numeric SLA evidence, a timed restore and sponsor choice remain honestly open. Governance discovery is not yet present. This review found one must-fix private ACR image-pull dependency and three should-fix gaps covering Terraform state bootstrap, diagnostic coverage and the full confirmed subnet handoff.",
+  "compact_for_parent": "Pass 1 (comprehensive) | HIGH | 1 must_fix, 3 should_fix | Key: Private ACR image pulls lack an explicit VNet path",
+  "risk_level": "high",
+  "must_fix_count": 1,
+  "should_fix_count": 3,
+  "suggestion_count": 0,
+  "findings": [
+    {
+      "id": "8beca2b6",
+      "severity": "must_fix",
+      "category": "hidden_dependency",
+      "claim": "Private ACR image pulls lack an explicit VNet path",
+      "evidence": "The design disables public access on the shared Premium Container Registry, creates a private endpoint, and shows that registry supplying images to the Dev and Prod portal/API apps. The handoff requires App Service VNet integration and managed identities generally, but does not require VNet image-pull mode for either app environment or explicitly gate the AcrPull assignment and private DNS resolution. App Service's ordinary application VNet integration is not itself proof that platform image-pull traffic uses that route.",
+      "impact": "If App Service attempts to pull a container image over the public path while ACR public access is disabled, infrastructure may provision but the portal or API container cannot start or update, blocking the workload from serving traffic.",
+      "artifact_section": "Implementation Handoff → Security Requirements for Implementation",
+      "suggested_fix": {
+        "artifact_path": "agent-output/nordic-foods/02-architecture-assessment.md",
+        "proposed_edit": "Add a requirement for both Dev and Prod portal/API apps to enable App Service VNet image pull (the Terraform provider's vnet_image_pull_enabled setting or equivalent), resolve privatelink.azurecr.io through the integration VNet, and grant each app identity AcrPull on the shared registry before deployment. Include a private image-pull connectivity check in the Step 4 readiness criteria."
+      },
+      "traces_to": [],
+      "requires_step": "step-4",
+      "verification_anchors": [
+        "Executive Summary → Recommended Architecture: ACR image-pull arrows to Portal and API",
+        "Resource SKU Recommendations → Container Registry row",
+        "Implementation Handoff → Resources to Provision: App Service rows #2-3, Container Registry #8, private endpoints #10 and DNS zones #11",
+        "Implementation Handoff → Security Requirements for Implementation: Managed Identity, Private DNS and No public data access rows"
+      ]
+    },
+    {
+      "id": "5a4843bd",
+      "severity": "should_fix",
+      "category": "hidden_dependency",
+      "claim": "Terraform state backend has no explicit bootstrap sequence",
+      "evidence": "The architecture calls the shared Blob state account a prerequisite but also lists that private, endpoint-protected account among the resources to provision. It does not say whether it is pre-existing, separately bootstrapped, or created before the main Terraform backend is initialized. The private endpoint, DNS and runner path are also needed before the hosted runner can use a private backend.",
+      "impact": "If Step 4 puts backend creation and the application resources in one ordinary Terraform configuration, terraform init cannot access a backend that does not yet exist; deployment stops before Terraform can create the listed account. A private endpoint without working runner DNS/connectivity creates the same initialization failure.",
+      "artifact_section": "Executive Summary → Recommended Architecture; Implementation Handoff → Resources to Provision",
+      "suggested_fix": {
+        "artifact_path": "agent-output/nordic-foods/02-architecture-assessment.md",
+        "proposed_edit": "Clarify that the state account is created by a separate bootstrap phase or an explicitly identified pre-existing platform dependency. Specify when its private endpoint, blob DNS link, access role and runner connectivity are ready, then migrate/bootstrap state before initializing the main Terraform backend."
+      },
+      "traces_to": [],
+      "requires_step": "step-4",
+      "verification_anchors": [
+        "Executive Summary → Strengths: shared Blob state account is a prerequisite",
+        "Resource SKU Recommendations → Terraform-state storage account row",
+        "Implementation Handoff → Resources to Provision: private endpoints #10 and Terraform-state storage #12",
+        "Implementation Handoff → Security Requirements for Implementation: Private DNS and No shared-key Storage rows"
+      ]
+    },
+    {
+      "id": "6e33396a",
+      "severity": "should_fix",
+      "category": "waf_blind_spot",
+      "claim": "Diagnostic coverage omits ACR and network resources",
+      "evidence": "The Monitoring Requirements table currently specifies diagnostic settings only for SQL, Key Vault, Storage and App Service. The canonical security baseline requires settings for every supported resource and explicitly includes Container Registry plus networking resources such as VNet, NSG and Private Endpoint, with service-specific logs and metrics. The design includes a private ACR, five subnets/NSGs and ten private endpoints, but their diagnostic coverage is not handed off.",
+      "impact": "Registry authentication/image-pull failures and private-link or network connectivity issues can occur without the platform logs/metrics needed to identify their cause, degrading operational response for the private production path.",
+      "artifact_section": "Implementation Handoff → Monitoring Requirements for Implementation",
+      "suggested_fix": {
+        "artifact_path": "agent-output/nordic-foods/02-architecture-assessment.md",
+        "proposed_edit": "Extend the diagnostics requirement to Container Registry and each networking resource type that supports diagnostic settings (including NSGs, VNet and Private Endpoints). Route supported logs and metrics to the project workspace, identify the service-specific categories during Step 4, and preserve the stated retention limit for PII-bearing data."
+      },
+      "traces_to": [],
+      "requires_step": "step-4",
+      "verification_anchors": [
+        "Resource SKU Recommendations → Container Registry, Private endpoints, and Log Analytics rows",
+        "Implementation Handoff → Resources to Provision: VNet/NSGs #1, Container Registry #8, private endpoints #10, Log Analytics #9",
+        "Implementation Handoff → Monitoring Requirements for Implementation: Diagnostics and Log retention rows"
+      ]
+    },
+    {
+      "id": "d0b36737",
+      "severity": "should_fix",
+      "category": "scope_risk",
+      "claim": "The handoff omits most of the confirmed subnet allocation",
+      "evidence": "The artifact reports a confirmed VNet plan with five subnets and records the runner subnet as 10.0.0.192/27, but does not carry the other confirmed allocations from the current project decision: Prod and Dev App Service integration subnets (10.0.0.0/26 and 10.0.0.64/26) and Prod/shared and Dev private-endpoint subnets (10.0.0.128/27 and 10.0.0.160/27), including their delegations and NSG associations. The runner range itself is correctly closed; the remaining omission is the rest of the handoff map.",
+      "impact": "If the Planner re-derives rather than carries forward the approved map, subnet ranges or delegations can drift from the confirmed network decision, causing App Service integration or private endpoint deployment/connectivity failures and avoidable replanning.",
+      "artifact_section": "Implementation Handoff → Resources to Provision",
+      "suggested_fix": {
+        "artifact_path": "agent-output/nordic-foods/02-architecture-assessment.md",
+        "proposed_edit": "Add the complete confirmed subnet table to the handoff: purpose, CIDR, delegation, NSG association and endpoint capacity. Keep the runner subnet at 10.0.0.192/27 and its maximum concurrent-runner count as an explicit Step 4 confirmation."
+      },
+      "traces_to": [],
+      "requires_step": "step-4",
+      "verification_anchors": [
+        "Architecture Decision Summary → Network posture: VNet 10.0.0.0/16 and per-environment subnets",
+        "Executive Summary → Required Capability Dependencies: runner subnet and private endpoint subnet references",
+        "Implementation Handoff → Open items carried to Step 3.5 and 4: confirmed runner subnet",
+        "Implementation Handoff → Resources to Provision #1: VNet and NSGs, 10.0.0.0/16, five subnets"
+      ]
+    }
+  ],
+  "cache_inputs": {
+    "artifact_sha": "3bd562b1c590829bcf1c3cef106650640c7389f7f69b89760b340d92c8a113d1",
+    "checklists_sha": "0300a75e3283490e9d1e64cb0ca32fba34d979e8e1665f4d63f17b0d2f08e25f",
+    "protocol_sha": "e3538fc4f5271ee0928a18048637392877fc42f57897824351940f06241cd091",
+    "subagent_sha": "c6b9c87f3ae8ca7019d9a2401a6798b0fb34374a1ee7c9c8c5f66a3344b071e1",
+    "model": "GPT-6 Luna (copilot)",
+    "artifact_hash": "df36df99b07fd1c7f8d2aa81d148ee2e1388052aad170018ab5a6820e5c09598"
+  },
+  "supporting_inputs": [
+    {
+      "path": "agent-output/nordic-foods/01-requirements.md",
+      "sha256": "843eb954c9b9080125192b3ce35eec0de2be4f455e02511ca38099af804b0052"
+    },
+    {
+      "path": "agent-output/nordic-foods/sku-manifest.json",
+      "sha256": "6c3ab5a217ff18658103fff8444f920309d3c3d18244135951e40dd0049c9196"
+    },
+    {
+      "path": "agent-output/nordic-foods/02-cost-estimate-v3.json",
+      "sha256": "cf8580a70d6395b6dac4148df598c2da9f588ce9c680df6fdc40600e1f45027a"
+    },
+    {
+      "path": "agent-output/nordic-foods/02-cost-estimate-ancillary-v2.json",
+      "sha256": "63abba7d6494eb8f86892c1872893ec5a472feb4ebf5ca4e92ec1aa2e732e856"
+    },
+    {
+      "path": "agent-output/nordic-foods/02-sku-candidates.json",
+      "sha256": "9901a5a725b588f2a804650038dabb792d16ecf3c54206059fe55736c856372b"
+    },
+    {
+      "path": "agent-output/nordic-foods/03-des-cost-estimate.md",
+      "sha256": "36a89e25bba48e00d8b4608272de4a11ad8fce077d29b89defd6cf8723b418b2"
+    }
+  ]
+}

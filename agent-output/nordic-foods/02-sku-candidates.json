@@ -1,0 +1,316 @@
+{
+  "status": "FAILED",
+  "project_name": "nordic-foods",
+  "region": "swedencentral",
+  "currency": "USD",
+  "monthly_total": 0.0,
+  "yearly_total": 0.0,
+  "total_scope_note": "Comparison-only run; no candidate is selected, so overall totals exclude all alternatives.",
+  "resources": [],
+  "optimization_notes": [
+    "Candidate prices are comparisons only and do not represent committed architecture pricing.",
+    "Monthly equivalents for daily SQL DTU meters use 365/12 days per average month. Hourly meters use 730 hours per month.",
+    "Delta is the spread among fully priced candidates only; it is null for any decision set with an unresolved candidate."
+  ],
+  "savings_status": "NOT_QUANTIFIED",
+  "savings_reason": "No reservation meter was returned for P1v3; savings cannot be quantified.",
+  "eligible_strategies": [],
+  "data_source": "Azure Resource Manager MCP get_retail_prices",
+  "queried_at": "2026-10-14T11:02:50Z",
+  "confidence": "Low",
+  "unresolved_items": [
+    "app-plan-prod/P1v3-PAYG: the MCP P1v3 App Consumption query returned no rows; the documented direct Retail Prices API fallback also returned no meters.",
+    "app-plan-prod/P1v3-1yr-reservation: the regional App Service Reservation catalog query returned no matching P1v3 row; no monthly-equivalent price can be calculated.",
+    "sql-prod/GP-serverless-Gen5/General Purpose storage: both paid and Free data-stored meters were returned without a tier or allowance boundary that establishes which applies to 32 GB.",
+    "sql-prod/GP-serverless-Gen5/LRS backup storage: the LRS meter is priced per GB/month, but no backup GB-month quantity was supplied.",
+    "app-plan-prod-zr/P1v3-PAYG-2-instances: no matching P1v3 PAYG price was returned by MCP or the direct fallback."
+  ],
+  "mcp_calls_used": 4,
+  "direct_api_calls_used": 1,
+  "budget_exceeded": false,
+  "query_ledger": [
+    {
+      "query": {
+        "serviceName": "Azure App Service",
+        "armRegionName": "swedencentral",
+        "priceType": "Consumption",
+        "currencyCode": "USD"
+      },
+      "result": "success",
+      "count": 128,
+      "next_page": null
+    },
+    {
+      "query": {
+        "serviceName": "SQL Database",
+        "armRegionName": "swedencentral",
+        "priceType": "Consumption",
+        "currencyCode": "USD"
+      },
+      "result": "success",
+      "count": 243,
+      "next_page": null
+    },
+    {
+      "query": {
+        "serviceName": "Azure App Service",
+        "armRegionName": "swedencentral",
+        "meterName": "P1v3 App",
+        "priceType": "Consumption",
+        "currencyCode": "USD"
+      },
+      "result": "empty",
+      "count": 0,
+      "next_page": null
+    },
+    {
+      "query": {
+        "serviceName": "Azure App Service",
+        "armRegionName": "swedencentral",
+        "priceType": "Reservation",
+        "currencyCode": "USD"
+      },
+      "result": "success; no matching P1v3 row",
+      "count": 156,
+      "next_page": null
+    }
+  ],
+  "retail_api_evidence": [],
+  "retail_api_attempts": [
+    {
+      "evidence_path": "02-sku-candidates.json.retail-evidence/p1v3-payg-attempt-failure.json",
+      "request_path": "02-sku-candidates.json.retail-evidence/p1v3-payg-request.json",
+      "resource_names": [
+        "app-plan-prod/P1v3-PAYG",
+        "app-plan-prod-zr/P1v3-PAYG-2-instances"
+      ],
+      "selected_meters": [],
+      "calculation": "No matching meter returned; no cost calculated.",
+      "outcome": "One direct request; helper reported no retail meters and wrote no evidence-ready catalog file."
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "app-plan-prod",
+      "winner_label": null,
+      "delta_monthly_usd": null,
+      "candidates": [
+        {
+          "label": "S1",
+          "service_name": "Azure App Service",
+          "sku": "S1",
+          "region": "swedencentral",
+          "quantity": 1,
+          "price_type": "Consumption",
+          "hourly_rate": 0.095,
+          "monthly_cost": 69.35,
+          "notes": "Linux; Azure App Service Standard Plan - Linux; meter S1 App (meterId b56c3197-90a2-50f6-8197-6770842ec25f), 1 Hour, USD. Calculation: 0.095 x 730 hours x 1 instance."
+        },
+        {
+          "label": "P0v3",
+          "service_name": "Azure App Service",
+          "sku": "P0v3",
+          "region": "swedencentral",
+          "quantity": 1,
+          "price_type": "Consumption",
+          "hourly_rate": 0.089,
+          "monthly_cost": 64.97,
+          "notes": "Linux; Azure App Service Premium v3 Plan - Linux; meter P0v3 App (meterId 352d6efe-cb95-5ca9-82c9-e565bee16ddc), 1 Hour, USD. Calculation: 0.089 x 730 hours x 1 instance."
+        },
+        {
+          "label": "P1v3-PAYG",
+          "service_name": "Azure App Service",
+          "sku": "P1v3",
+          "region": "swedencentral",
+          "quantity": 1,
+          "price_type": "Consumption",
+          "hourly_rate": null,
+          "monthly_cost": null,
+          "notes": "Linux; 730 billable hours/month per instance. The MCP meter query was empty and the documented direct fallback returned no rows; no price inferred."
+        },
+        {
+          "label": "P1v3-1yr-reservation",
+          "service_name": "Azure App Service",
+          "sku": "P1v3",
+          "region": "swedencentral",
+          "quantity": 1,
+          "price_type": "Reservation",
+          "commitment": "1-year",
+          "hourly_rate": null,
+          "monthly_cost": null,
+          "notes": "Linux App Service, 1 instance; monthly-equivalent requested. Broad regional Reservation catalog query returned no matching P1v3 record, so no rate was inferred."
+        }
+      ]
+    },
+    {
+      "decision_id": "app-plan-dev",
+      "winner_label": null,
+      "delta_monthly_usd": 56.21,
+      "candidates": [
+        {
+          "label": "B1",
+          "service_name": "Azure App Service",
+          "sku": "B1",
+          "region": "swedencentral",
+          "quantity": 1,
+          "price_type": "Consumption",
+          "hourly_rate": 0.018,
+          "monthly_cost": 13.14,
+          "notes": "Linux; Azure App Service Basic Plan - Linux; meter B1 (meterId 87a319c7-c1cc-56a0-a6c2-a043cd34225d), 1 Hour, USD. Calculation: 0.018 x 730 hours x 1 instance."
+        },
+        {
+          "label": "S1",
+          "service_name": "Azure App Service",
+          "sku": "S1",
+          "region": "swedencentral",
+          "quantity": 1,
+          "price_type": "Consumption",
+          "hourly_rate": 0.095,
+          "monthly_cost": 69.35,
+          "notes": "Linux; Azure App Service Standard Plan - Linux; meter S1 App (meterId b56c3197-90a2-50f6-8197-6770842ec25f), 1 Hour, USD. Calculation: 0.095 x 730 hours x 1 instance."
+        }
+      ]
+    },
+    {
+      "decision_id": "sql-prod",
+      "winner_label": null,
+      "delta_monthly_usd": null,
+      "candidates": [
+        {
+          "label": "DTU-S1",
+          "service_name": "SQL Database",
+          "sku": "Standard S1",
+          "region": "swedencentral",
+          "quantity": 1,
+          "price_type": "Consumption",
+          "hourly_rate": null,
+          "monthly_cost": 29.434208,
+          "notes": "Azure SQL Database single database; SQL Database Single Standard, skuName S1; meter S1 DTUs (meterId 7b7990fe-bcce-5196-84e1-f7390a8b825d), 1/Day, USD. Calculation: 0.9677 x 365/12 days x 1 database."
+        },
+        {
+          "label": "DTU-S2",
+          "service_name": "SQL Database",
+          "sku": "Standard S2",
+          "region": "swedencentral",
+          "quantity": 1,
+          "price_type": "Consumption",
+          "hourly_rate": null,
+          "monthly_cost": 73.608333,
+          "notes": "Azure SQL Database single database; SQL Database Single Standard, skuName S2; meter S2 DTUs (meterId 85b2411e-f258-5539-ab0b-e077b45b0df3), 1/Day, USD. Calculation: 2.42 x 365/12 days x 1 database."
+        },
+        {
+          "label": "GP-serverless-Gen5",
+          "service_name": "SQL Database",
+          "sku": "General Purpose serverless Gen5",
+          "region": "swedencentral",
+          "quantity": 1,
+          "price_type": "Consumption",
+          "hourly_rate": null,
+          "monthly_cost": null,
+          "priced_components_monthly_usd": 122.23047,
+          "components": [
+            {
+              "name": "Compute",
+              "status": "PRICED",
+              "retail_price": 0.167439,
+              "unit_of_measure": "1 Hour",
+              "monthly_cost": 122.23047,
+              "meter_name": "vCore",
+              "meter_id": "f413518b-3ad9-55b3-a3b5-48f500672226",
+              "product_name": "SQL Database Single/Elastic Pool General Purpose - Compute Gen5",
+              "sku_name": "1 vCore",
+              "usage": "Average 1 vCore billed 730 hours/month; aggregate per database",
+              "calculation": "0.167439 x 730"
+            },
+            {
+              "name": "Data storage",
+              "status": "UNRESOLVED_METER_APPLICABILITY",
+              "retail_price_if_paid_meter_applies": 0.13685,
+              "free_meter_price": 0.0,
+              "unit_of_measure": "1 GB/Month",
+              "quantity_gb": 32,
+              "paid_meter_name": "General Purpose Data Stored",
+              "paid_meter_id": "24bf0b7c-5071-5f0f-8632-af57636f125d",
+              "free_meter_name": "General Purpose Data Stored - Free",
+              "free_meter_id": "bf3a1f9e-13cb-57f9-add3-6cf0ace5751d",
+              "priced_amount_if_paid_meter_applies": 4.3792,
+              "notes": "The retail response has both paid and Free rows with no applicable allowance/tier boundary; the 32 GB charge cannot be selected deterministically."
+            },
+            {
+              "name": "LRS backup storage",
+              "status": "UNRESOLVED_USAGE",
+              "retail_price_per_gb_month": 0.119,
+              "unit_of_measure": "1 GB/Month",
+              "meter_name": "LRS Data Stored",
+              "meter_id": "0dcd6184-da7b-59fd-8b8c-17a91f8b10e2",
+              "product_name": "SQL Database Single/Elastic Pool PITR Backup Storage",
+              "sku_name": "Backup LRS",
+              "quantity_gb_month": null,
+              "monthly_cost": null,
+              "notes": "Price source is the MCP Consumption row; backup GB-month usage was not supplied and is not assumed to be zero or equal to provisioned data storage."
+            }
+          ],
+          "notes": "The priced compute subtotal is not a complete candidate total; 32 GB storage meter applicability and LRS backup usage remain unresolved."
+        }
+      ]
+    },
+    {
+      "decision_id": "sql-dev",
+      "winner_label": null,
+      "delta_monthly_usd": 9.821542,
+      "candidates": [
+        {
+          "label": "DTU-Basic",
+          "service_name": "SQL Database",
+          "sku": "Basic",
+          "region": "swedencentral",
+          "quantity": 1,
+          "price_type": "Consumption",
+          "hourly_rate": null,
+          "monthly_cost": 4.897083,
+          "notes": "Azure SQL Database single database; SQL Database Single Basic, skuName B; meter B DTU (meterId ed717c09-8bfb-58ad-9eeb-3d3f47e8fac9), 1/Day, USD. Calculation: 0.161 x 365/12 days x 1 database."
+        },
+        {
+          "label": "DTU-S0",
+          "service_name": "SQL Database",
+          "sku": "Standard S0",
+          "region": "swedencentral",
+          "quantity": 1,
+          "price_type": "Consumption",
+          "hourly_rate": null,
+          "monthly_cost": 14.718625,
+          "notes": "Azure SQL Database single database; SQL Database Single Standard, skuName S0; meter S0 DTUs (meterId 633d684b-ca73-56a2-a73d-900e394737c4), 1/Day, USD. Calculation: 0.4839 x 365/12 days x 1 database."
+        }
+      ]
+    },
+    {
+      "decision_id": "app-plan-prod-zr",
+      "winner_label": null,
+      "delta_monthly_usd": null,
+      "candidates": [
+        {
+          "label": "P1v3-PAYG-2-instances",
+          "service_name": "Azure App Service",
+          "sku": "P1v3",
+          "region": "swedencentral",
+          "quantity": 2,
+          "price_type": "Consumption",
+          "hourly_rate": null,
+          "monthly_cost": null,
+          "notes": "Linux; 2 instances for zone redundancy, 730 hours/month each. No matching P1v3 meter returned by MCP or direct fallback."
+        },
+        {
+          "label": "P0v3-PAYG-2-instances",
+          "service_name": "Azure App Service",
+          "sku": "P0v3",
+          "region": "swedencentral",
+          "quantity": 2,
+          "price_type": "Consumption",
+          "hourly_rate": 0.089,
+          "monthly_cost": 129.94,
+          "notes": "Linux; Azure App Service Premium v3 Plan - Linux; meter P0v3 App (meterId 352d6efe-cb95-5ca9-82c9-e565bee16ddc), 1 Hour, USD. Calculation: 0.089 x 730 hours x 2 instances."
+        }
+      ]
+    }
+  ]
+}

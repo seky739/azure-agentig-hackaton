@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "challenged_artifact": "agent-output/nordic-foods/03-des-cost-estimate.md",
+  "artifact_type": "cost-estimate",
+  "review_focus": "cost-feasibility",
+  "pass_number": 1,
+  "challenge_summary": "Worker totals, monthly/annual rollups, DNS fallback evidence, reservation conversion, and disclosed operating assumptions were checked. The estimate omits the requested one-year SQL commitment comparison; displayed rounded line items also differ from the monthly total by $0.01.",
+  "compact_for_parent": "Pass 1 (cost-feasibility) | MEDIUM | 0 must_fix, 1 should_fix | Key: none",
+  "risk_level": "medium",
+  "must_fix_count": 0,
+  "should_fix_count": 1,
+  "suggestion_count": 1,
+  "findings": [
+    {
+      "id": "05da9073",
+      "severity": "should_fix",
+      "category": "scope_risk",
+      "claim": "The required one-year SQL commitment comparison is missing",
+      "evidence": "The requirements' Budget Decision Rule says Step 2 compares pay-as-you-go with a one-year commitment for steady-state compute and SQL. The recalled user decision also prefers a one-year reserved commitment and leaves service scope to the Architect. This estimate quantifies only the Prod P0v3 App Service reservation and explicitly says SQL reservations were not evaluated. It does not establish whether the selected DTU S2 model is eligible or provide an evidenced ineligibility rationale, nor does it compare a qualifying SQL commitment's effective monthly cost, utilization, and break-even.",
+      "impact": "The sponsor's commitment decision and the savings comparison are incomplete: if the selected SQL service is eligible, its committed-price scenario is absent; if it is not eligible, the estimate leaves that requirement unexplained and cannot show that the available commitment options were considered.",
+      "artifact_section": "Decision Summary; Cost Driver Details → Azure SQL Database Prod; Savings Opportunities",
+      "suggested_fix": {
+        "artifact_path": "agent-output/nordic-foods/03-des-cost-estimate.md",
+        "line_range": [94, 97],
+        "proposed_edit": "Add a one-year SQL commitment comparison for the selected Prod DTU S2 model, including the priced source, term-to-month conversion, utilization/break-even assumptions, and effect on the estimate. If DTU S2 is not eligible, state that conclusion with authoritative evidence and explain why no SQL commitment scenario is priced. Keep any alternative comparison-only price out of the baseline total."
+      },
+      "traces_to": [],
+      "requires_step": "step-2",
+      "verification_anchors": [
+        "01-requirements.md: Budget Decision Rule, one-year commitment comparison for compute and SQL (line 255)",
+        "02-architecture-assessment.md: approved Prod SQL DTU S2 selection and on-demand pricing decision",
+        "03-des-cost-estimate.md: Cost Driver Details → Azure SQL Database Prod (line 96)",
+        "03-des-cost-estimate.md: Savings Opportunities and SQL commitment exclusions (lines 202-219)"
+      ]
+    },
+    {
+      "id": "af50c331",
+      "severity": "suggestion",
+      "category": "untested_assumption",
+      "claim": "Rounded line items total $287.13 while the displayed monthly total is $287.12",
+      "evidence": "Summing the 16 displayed monthly line-item amounts yields $287.13. The two COMPLETE worker JSON monthly totals sum to $287.12183332666666, which rounds to $287.12; the exact annual sum is $3,445.46199992, which rounds to the displayed $3,445.46. Thus the worker totals and annual figure reconcile, but the visible line-item rollup differs by one cent because rows are rounded individually.",
+      "impact": "The difference is immaterial to the EUR 500 budget comparison, but a reader summing the published rows cannot reproduce the displayed monthly total exactly.",
+      "artifact_section": "Detailed Cost Breakdown → Line Items",
+      "suggested_fix": {
+        "artifact_path": "agent-output/nordic-foods/03-des-cost-estimate.md",
+        "line_range": [221, 243],
+        "proposed_edit": "Add a short rounding note explaining that independently rounded line items sum to $287.13 while the total is calculated from unrounded worker values and rounds to $287.12, or display sufficient precision to make the reconciliation explicit."
+      },
+      "traces_to": [],
+      "verification_anchors": [
+        "03-des-cost-estimate.md: Detailed Cost Breakdown → Line Items, all displayed monthly rows and Total (lines 221-243)",
+        "02-cost-estimate-v2.json: monthly_total",
+        "02-cost-estimate-ancillary-v2.json: monthly_total and yearly_total"
+      ]
+    }
+  ],
+  "cache_inputs": {
+    "artifact_sha": "3abbf2621f42a28be592252da23c284e8672401755f147033489cd5555a37d9a",
+    "checklists_sha": "0300a75e3283490e9d1e64cb0ca32fba34d979e8e1665f4d63f17b0d2f08e25f",
+    "protocol_sha": "e3538fc4f5271ee0928a18048637392877fc42f57897824351940f06241cd091",
+    "subagent_sha": "c6b9c87f3ae8ca7019d9a2401a6798b0fb34374a1ee7c9c8c5f66a3344b071e1",
+    "model": "GPT-6 Luna (copilot)",
+    "artifact_hash": "449b1242ee20512f29c57b7d9f2de4c7f1f117d5c367abb328f0a88c651ccdae"
+  },
+  "supporting_inputs": [
+    {
+      "path": "agent-output/nordic-foods/02-cost-estimate-v2.json",
+      "sha256": "5c88e4b6fee8953c758c858eb4569de3e8e615f7c16b708bebb757e14f39a09a"
+    },
+    {
+      "path": "agent-output/nordic-foods/02-cost-estimate-ancillary-v2.json",
+      "sha256": "63abba7d6494eb8f86892c1872893ec5a472feb4ebf5ca4e92ec1aa2e732e856"
+    },
+    {
+      "path": "agent-output/nordic-foods/02-cost-estimate.json.retail-evidence/azure-dns.json",
+      "sha256": "9e2b8c368e0ca813851d2e0e5c9bb4af143cbd2384cd92fd68505053d1a5a997"
+    },
+    {
+      "path": "agent-output/nordic-foods/02-sku-candidates.json",
+      "sha256": "9901a5a725b588f2a804650038dabb792d16ecf3c54206059fe55736c856372b"
+    },
+    {
+      "path": "agent-output/nordic-foods/sku-manifest.json",
+      "sha256": "bbc494747bb206c6b742995b21e5792d24a545ebbc9c1ba53c4a6d7eddd9a8be"
+    },
+    {
+      "path": "agent-output/nordic-foods/01-requirements.md",
+      "sha256": "843eb954c9b9080125192b3ce35eec0de2be4f455e02511ca38099af804b0052"
+    },
+    {
+      "path": "agent-output/nordic-foods/02-architecture-assessment.md",
+      "sha256": "e75b0e6fa9b7501012f451c2ffe980717431d015a5613a86bc065d261e55d889"
+    }
+  ]
+}

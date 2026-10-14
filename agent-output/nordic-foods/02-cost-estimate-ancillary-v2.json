@@ -1,0 +1,103 @@
+{
+  "status": "COMPLETE",
+  "project_name": "nordic-foods",
+  "region": "swedencentral",
+  "currency": "USD",
+  "monthly_total": 51.07941666666667,
+  "yearly_total": 612.953,
+  "resources": [
+    {
+      "name": "Container Registry Premium (Shared: Dev + Prod)",
+      "service_name": "Container Registry",
+      "sku": "Premium",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 50.69241666666667,
+      "notes": "MCP get_retail_prices; queried_at=2026-10-14T11:39:46Z; productName=Container Registry; skuName=Premium; meterName=Premium Registry Unit; meterId=2f8e1105-47d0-4105-a934-b2175c766a71; unitOfMeasure=1/Day; priceType=Consumption; currency=USD. Environment/stamp=shared across Dev and Prod; one aggregate registry for the full month (quantity=1), no storage overage, geo-replication, or tasks. Calculation: $1.6666/day * (365/12 average days per month) = $50.6924166667."
+    },
+    {
+      "name": "Key Vault Operations (Prod)",
+      "service_name": "Key Vault",
+      "sku": "Standard",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 0.3,
+      "notes": "MCP get_retail_prices; queried_at=2026-10-14T11:39:46Z; productName=Key Vault; skuName=Standard; meterName=Operations; meterId=0f824807-2376-435c-95c9-f992b67a07b0; unitOfMeasure=10K; priceType=Consumption; currency=USD. Environment=Prod; one vault; 100000 secret/general operations per month, aggregate for this vault; no HSM keys or certificate renewals. Calculation: 100000/10000 * $0.03 = $0.30."
+    },
+    {
+      "name": "Key Vault Operations (Dev)",
+      "service_name": "Key Vault",
+      "sku": "Standard",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 0.06,
+      "notes": "MCP get_retail_prices; queried_at=2026-10-14T11:39:46Z; productName=Key Vault; skuName=Standard; meterName=Operations; meterId=0f824807-2376-435c-95c9-f992b67a07b0; unitOfMeasure=10K; priceType=Consumption; currency=USD. Environment=Dev; one vault; 20000 secret/general operations per month, aggregate for this vault; no HSM keys or certificate renewals. Calculation: 20000/10000 * $0.03 = $0.06."
+    },
+    {
+      "name": "Log Analytics Ingestion (Prod)",
+      "service_name": "Log Analytics",
+      "sku": "Analytics Logs",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 0,
+      "notes": "MCP get_retail_prices; queried_at=2026-10-14T11:39:46Z; productName=Log Analytics; skuName=Analytics Logs; meterName=Analytics Logs Data Ingestion; meterId=e3669cc9-19b6-55fc-b9fe-782ab83615ab; unitOfMeasure=1 GB; priceType=Consumption; currency=USD. Environment=Prod; 5 GB/month aggregate ingestion including workspace-based Application Insights, one workspace. The returned tierMinimumUnits=0 rate is $0/GB and tierMinimumUnits=5 is $2.99/GB; at exactly 5 GB, the returned zero-priced tier applies. 30-day retention; no extra retention charge. Calculation: 5 GB * $0/GB = $0."
+    },
+    {
+      "name": "Log Analytics Ingestion (Dev)",
+      "service_name": "Log Analytics",
+      "sku": "Analytics Logs",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 0,
+      "notes": "MCP get_retail_prices; queried_at=2026-10-14T11:39:46Z; productName=Log Analytics; skuName=Analytics Logs; meterName=Analytics Logs Data Ingestion; meterId=e3669cc9-19b6-55fc-b9fe-782ab83615ab; unitOfMeasure=1 GB; priceType=Consumption; currency=USD. Environment=Dev; 1 GB/month aggregate ingestion including workspace-based Application Insights, one workspace. The returned tierMinimumUnits=0 rate is $0/GB; tierMinimumUnits=5 is $2.99/GB. Calculation: 1 GB * $0/GB = $0. 30-day retention; no extra retention charge."
+    },
+    {
+      "name": "Terraform State Blob Capacity (Shared)",
+      "service_name": "Storage",
+      "sku": "Standard_LRS Hot StorageV2 Block Blob",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 0.0184,
+      "notes": "MCP get_retail_prices; queried_at=2026-10-14T11:39:46Z; productName=General Block Blob v2; skuName=Hot LRS; meterName=Hot LRS Data Stored; meterId=39d8c6c1-22c0-5719-9330-593a56b3a2e0; unitOfMeasure=1 GB/Month; priceType=Consumption; currency=USD. Environment/stamp=shared Terraform state account; 1 GB stored for the month, aggregate. Calculation: 1 GB * $0.0184/GB-month = $0.0184."
+    },
+    {
+      "name": "Terraform State Blob Write Operations (Shared)",
+      "service_name": "Storage",
+      "sku": "Standard_LRS Hot StorageV2 Block Blob",
+      "region": "swedencentral",
+      "quantity": 1000,
+      "hourly_rate": null,
+      "monthly_cost": 0.005,
+      "notes": "MCP get_retail_prices; queried_at=2026-10-14T11:39:46Z; productName=General Block Blob v2; skuName=Hot LRS; meterName=Hot LRS Write Operations; meterId=0ce2115f-eedc-5ac1-82ed-b0651b1d7e5b; unitOfMeasure=10K; priceType=Consumption; currency=USD. Environment/stamp=shared Terraform state account; 10000 total operations/month, of which 10% (1000) are write-class, aggregate. Calculation: 1000/10000 * $0.05 = $0.005."
+    },
+    {
+      "name": "Terraform State Blob Read Operations (Shared)",
+      "service_name": "Storage",
+      "sku": "Standard_LRS Hot StorageV2 Block Blob",
+      "region": "swedencentral",
+      "quantity": 9000,
+      "hourly_rate": null,
+      "monthly_cost": 0.0036,
+      "notes": "MCP get_retail_prices; queried_at=2026-10-14T11:39:46Z; productName=General Block Blob v2; skuName=Hot LRS; meterName=Hot Read Operations; meterId=9f764feb-a8b0-5a2a-b7f4-0fd86cb48011; unitOfMeasure=10K; priceType=Consumption; currency=USD. Environment/stamp=shared Terraform state account; 10000 total operations/month, of which 90% (9000) are read-class, aggregate. Calculation: 9000/10000 * $0.004 = $0.0036."
+    }
+  ],
+  "optimization_notes": [
+    "This estimate includes only the requested ancillary non-manifest, non-network resources for Step 2 in swedencentral.",
+    "Excluded as instructed: private endpoints, private DNS, Entra External ID, VNet/NSG/subnets, GitHub-hosted runner minutes, Application Gateway, Front Door, and WAF."
+  ],
+  "savings_status": "NOT_QUANTIFIED",
+  "savings_reason": "This run prices baseline consumption only; reservation and commitment savings were not requested.",
+  "eligible_strategies": [],
+  "data_source": "Azure Resource Manager MCP get_retail_prices",
+  "queried_at": "2026-10-14T11:39:46Z",
+  "confidence": "Medium",
+  "unresolved_items": [],
+  "mcp_calls_used": 6,
+  "budget_exceeded": false
+}

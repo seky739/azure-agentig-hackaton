@@ -1,0 +1,59 @@
+{
+  "query": {
+    "serviceName": "Azure DNS",
+    "priceType": "Consumption",
+    "currencyCode": "USD"
+  },
+  "remaining_requests": 3,
+  "mcp_failure": {
+    "kind": "empty_result",
+    "recorded_at": "2026-10-14T11:34:23Z",
+    "attempts": [
+      {
+        "query": {
+          "serviceName": "Azure DNS",
+          "priceType": "Consumption",
+          "currencyCode": "USD"
+        },
+        "response": {
+          "result": {
+            "BillingCurrency": "USD",
+            "Items": [],
+            "NextPageLink": null,
+            "Count": 0
+          }
+        }
+      },
+      {
+        "query": {
+          "serviceName": "Azure DNS",
+          "meterName": "Private Zone",
+          "priceType": "Consumption",
+          "currencyCode": "USD"
+        },
+        "response": {
+          "result": {
+            "BillingCurrency": "USD",
+            "Items": [],
+            "NextPageLink": null,
+            "Count": 0
+          }
+        }
+      },
+      {
+        "query": {
+          "serviceName": "Azure DNS",
+          "meterName": "Private Queries",
+          "priceType": "Consumption",
+          "currencyCode": "USD"
+        },
+        "response": {
+          "BillingCurrency": "USD",
+          "Items": [],
+          "NextPageLink": null,
+          "Count": 0
+        }
+      }
+    ]
+  }
+}

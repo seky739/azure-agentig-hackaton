@@ -1,0 +1,138 @@
+{
+  "decisions": [
+    {
+      "decided_at": "2026-10-14T08:58:00Z",
+      "action": "accept",
+      "note": "",
+      "source_file": "challenge-findings-requirements.json",
+      "severity": "should_fix",
+      "issue_index": 0,
+      "issue_id": "65c6e16b",
+      "pass_number": 1,
+      "title": "Blob recovery targets are not reconciled with the LRS pin"
+    },
+    {
+      "decided_at": "2026-10-14T08:58:00Z",
+      "action": "accept",
+      "note": "",
+      "source_file": "challenge-findings-requirements.json",
+      "severity": "should_fix",
+      "issue_index": 1,
+      "issue_id": "1f4ca7d2",
+      "pass_number": 1,
+      "title": "GDPR erasure and retention are not implementable requirements"
+    },
+    {
+      "decided_at": "2026-10-14T08:58:00Z",
+      "action": "accept",
+      "note": "",
+      "source_file": "challenge-findings-requirements.json",
+      "severity": "should_fix",
+      "issue_index": 2,
+      "issue_id": "a4f3d119",
+      "pass_number": 1,
+      "title": "Performance and growth targets are not measurable enough to size the MVP"
+    },
+    {
+      "decided_at": "2026-10-14T08:58:00Z",
+      "action": "accept",
+      "note": "",
+      "source_file": "challenge-findings-requirements.json",
+      "severity": "should_fix",
+      "issue_index": 3,
+      "issue_id": "68be8821",
+      "pass_number": 1,
+      "title": "Budget and reservation preferences lack a decision rule if required controls exceed the target"
+    },
+    {
+      "decided_at": "2026-10-14T08:58:00Z",
+      "action": "accept",
+      "note": "",
+      "source_file": "challenge-findings-requirements.json",
+      "severity": "should_fix",
+      "issue_index": 4,
+      "issue_id": "96e44ea8",
+      "pass_number": 1,
+      "title": "The private CI/CD runner path is assumed but not operationally specified"
+    },
+    {
+      "decided_at": "2026-10-14T10:38:23Z",
+      "action": "accept",
+      "note": "",
+      "source_file": "challenge-findings-requirements.json",
+      "severity": "should_fix",
+      "issue_index": 0,
+      "issue_id": "2863f744",
+      "pass_number": 1,
+      "title": "The 99.9% availability target has no acceptance path if single-zone Prod misses it"
+    },
+    {
+      "decided_at": "2026-10-14T10:38:23Z",
+      "action": "accept",
+      "note": "",
+      "source_file": "challenge-findings-requirements.json",
+      "severity": "should_fix",
+      "issue_index": 1,
+      "issue_id": "731f0737",
+      "pass_number": 1,
+      "title": "The scalability table labels per-minute throughput as transactions per day"
+    },
+    {
+      "decided_at": "2026-10-14T10:38:23Z",
+      "action": "accept",
+      "note": "",
+      "source_file": "challenge-findings-requirements.json",
+      "severity": "should_fix",
+      "issue_index": 2,
+      "issue_id": "cf52e2b9",
+      "pass_number": 1,
+      "title": "Private DNS is not stated as mandatory for every private endpoint"
+    },
+    {
+      "decided_at": "2026-10-14T10:42:22Z",
+      "note": "",
+      "issue_id": "0c715704",
+      "action": "accept",
+      "source_file": "challenge-findings-requirements.json",
+      "title": "The App Service API's required private endpoint is omitted from both security-control inventories",
+      "severity": "should_fix",
+      "pass_number": 1,
+      "issue_index": 0
+    },
+    {
+      "issue_id": "9f421374",
+      "source_file": "challenge-findings-requirements.json",
+      "pass_number": 1,
+      "issue_index": 0,
+      "severity": "should_fix",
+      "title": "GDPR erasure deadline conflicts with 35-day retention of secondary copies",
+      "action": "accept",
+      "note": "",
+      "decided_at": "2026-10-14T10:47:05Z"
+    },
+    {
+      "issue_id": "c93e50fa",
+      "source_file": "challenge-findings-requirements.json",
+      "pass_number": 1,
+      "issue_index": 0,
+      "severity": "should_fix",
+      "title": "Backup and log retention rows do not reflect the 30-day erasure ceiling",
+      "action": "accept",
+      "note": "",
+      "decided_at": "2026-10-14T10:50:22Z"
+    },
+    {
+      "issue_id": "96060f65",
+      "source_file": "challenge-findings-requirements.json",
+      "pass_number": 1,
+      "issue_index": 0,
+      "severity": "should_fix",
+      "title": "Seven-year receipt retention is outside the stated GDPR exception",
+      "action": "accept",
+      "note": "",
+      "decided_at": "2026-10-14T10:53:27Z"
+    }
+  ],
+  "challenged_artifact": "agent-output/nordic-foods/01-requirements.md",
+  "artifact_type": "requirements"
+}

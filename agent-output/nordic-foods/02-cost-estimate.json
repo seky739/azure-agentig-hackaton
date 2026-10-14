@@ -1,0 +1,146 @@
+{
+  "status": "FAILED",
+  "project_name": "nordic-foods",
+  "region": "swedencentral",
+  "currency": "USD",
+  "monthly_total": null,
+  "yearly_total": null,
+  "priced_subtotal_monthly_usd": 159.54241666,
+  "priced_subtotal_yearly_usd": 1914.50899992,
+  "resources": [
+    {
+      "name": "app-plan-web / prod",
+      "service_name": "Azure App Service",
+      "sku": "P0v3 Linux",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": 0.089,
+      "monthly_cost": 64.97,
+      "notes": "Environment=prod; stamp=single; on-demand; productName=Azure App Service Premium v3 Plan - Linux; skuName=P0v3; meterName=P0v3 App; meterId=352d6efe-cb95-5ca9-82c9-e565bee16ddc; unit=1 Hour; priceType=Consumption; currency=USD; usage=1 fixed plan x 730 hours/month; calculation=0.089 x 730 x 1."
+    },
+    {
+      "name": "app-plan-web / dev",
+      "service_name": "Azure App Service",
+      "sku": "B1 Linux",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": 0.018,
+      "monthly_cost": 13.14,
+      "notes": "Environment=dev; stamp=single; on-demand; productName=Azure App Service Basic Plan - Linux; skuName=B1; meterName=B1; unit=1 Hour; priceType=Consumption; currency=USD; usage=1 fixed plan x 730 hours/month; calculation=0.018 x 730 x 1."
+    },
+    {
+      "name": "sql-db-core / prod",
+      "service_name": "SQL Database",
+      "sku": "DTU Standard S2",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 73.60833333,
+      "notes": "Environment=prod; stamp=single; on-demand; productName=SQL Database Single Standard; skuName=S2; meterName=S2 DTUs; meterId=85b2411e-f258-5539-ab0b-e077b45b0df3; unit=1/Day; priceType=Consumption; currency=USD; usage=1 database, per database; calculation=USD 2.42/day x 365/12 days per average month = 73.60833333. Local backup redundancy; backup storage within included capacity per input."
+    },
+    {
+      "name": "sql-db-core / dev",
+      "service_name": "SQL Database",
+      "sku": "DTU Basic",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 4.89708333,
+      "notes": "Environment=dev; stamp=single; on-demand; productName=SQL Database Single Basic; skuName=B; meterName=B DTU; meterId=ed717c09-8bfb-58ad-9eeb-3d3f47e8fac9; unit=1/Day; priceType=Consumption; currency=USD; usage=1 database, per database; calculation=USD 0.161/day x 365/12 days per average month = 4.89708333. Backup storage within included capacity per input."
+    },
+    {
+      "name": "storage-data / prod",
+      "service_name": "Storage",
+      "sku": "Standard_LRS, Hot LRS, General Block Blob v2",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 2.7,
+      "notes": "Environment=prod; stamp=single; on-demand; productName=General Block Blob v2; skuName=Hot LRS; currency=USD; priceType=Consumption. Aggregate account usage (not multiplied by quantity): 100 GB stored/month, 100,000 write-class operations and 900,000 read-class operations. Hot LRS Data Stored: USD 0.0184 per 1 GB/Month, meterId=39d8c6c1-22c0-5719-9330-593a56b3a2e0; Hot LRS Write Operations: USD 0.05 per 10K, meterId=0ce2115f-eedc-5ac1-82ed-b0651b1d7e5b; Hot Read Operations: USD 0.004 per 10K, meterId=9f764feb-a8b0-5a2a-b7f4-0fd86cb48011. Calculation=100x0.0184 + (100000/10000)x0.05 + (900000/10000)x0.004 = 2.70. No geo-replication or storage egress charge per input."
+    },
+    {
+      "name": "storage-data / dev",
+      "service_name": "Storage",
+      "sku": "Standard_LRS, Hot LRS, General Block Blob v2",
+      "region": "swedencentral",
+      "quantity": 1,
+      "hourly_rate": null,
+      "monthly_cost": 0.227,
+      "notes": "Environment=dev; stamp=single; on-demand; productName=General Block Blob v2; skuName=Hot LRS; currency=USD; priceType=Consumption. Aggregate account usage (not multiplied by quantity): 10 GB stored/month, 5,000 write-class operations and 45,000 read-class operations. Hot LRS Data Stored: USD 0.0184 per 1 GB/Month, meterId=39d8c6c1-22c0-5719-9330-593a56b3a2e0; Hot LRS Write Operations: USD 0.05 per 10K, meterId=0ce2115f-eedc-5ac1-82ed-b0651b1d7e5b; Hot Read Operations: USD 0.004 per 10K, meterId=9f764feb-a8b0-5a2a-b7f4-0fd86cb48011. Calculation=10x0.0184 + (5000/10000)x0.05 + (45000/10000)x0.004 = 0.227. No geo-replication or storage egress charge per input."
+    }
+  ],
+  "optimization_notes": [
+    "The priced subtotal covers the six manifest service/environment lines only; it is not a complete project total because the manifest also requires private endpoints and private DNS resolution.",
+    "Private Link data processing is separate from storage egress; the stated storage egress allowance does not establish private endpoint ingress/egress usage.",
+    "SQL backup storage is not added because the input states local backup redundancy remains within included capacity."
+  ],
+  "savings_status": "NOT_QUANTIFIED",
+  "savings_reason": "Fresh regional Reservation discovery found the Linux P0v3 meter (productName=Azure App Service Premium v3 Plan - Linux, skuName=P0v3, meterName=P0v3 App, meterId=352d6efe-cb95-5ca9-82c9-e565bee16ddc, reservationTerm=1 Year, retailPrice=508 USD, unitOfMeasure=1 Hour). The returned unit and term do not establish a safe monthly-equivalent conversion under the pricing guidance, so no savings value is fabricated. The same fresh unfiltered regional Reservation catalog contained no P1v3 reservation meter.",
+  "eligible_strategies": [
+    {
+      "strategy": "1-year App Service reservation",
+      "sku": "P0v3 Linux",
+      "status": "METER_FOUND_MONTHLY_EQUIVALENT_UNRESOLVED",
+      "reservation_term": "1 Year",
+      "product_name": "Azure App Service Premium v3 Plan - Linux",
+      "meter_name": "P0v3 App",
+      "meter_id": "352d6efe-cb95-5ca9-82c9-e565bee16ddc",
+      "retail_price": 508,
+      "unit_of_measure": "1 Hour",
+      "currency": "USD"
+    },
+    {
+      "strategy": "1-year App Service reservation alternative",
+      "sku": "P1v3",
+      "status": "METER_NOT_FOUND",
+      "region": "swedencentral",
+      "price_type": "Reservation",
+      "note": "No P1v3 reservation row in the fresh broad regional Reservation response; this is not an on-demand or savings estimate."
+    }
+  ],
+  "data_source": "Azure Resource Manager MCP + Azure Retail Prices API (direct fallback)",
+  "queried_at": "2026-10-14T11:34:38.871Z",
+  "confidence": "Low",
+  "unresolved_items": [
+    "Private endpoints / dev: the manifest requires private endpoints for app-plan-web, sql-db-core, and storage-data, but endpoint count/deployment mapping and aggregate monthly ingress and egress GB are absent; hourly and data-processing charges cannot be totaled. Catalog rates returned: Global Standard Private Endpoint USD 0.01 per 1 Hour; tiered ingress and egress meters USD 0.01/GB (tier minimum 0), USD 0.006/GB (1,000,000), and USD 0.004/GB (5,000,000).",
+    "Private endpoints / prod: the manifest requires private endpoints for app-plan-web, sql-db-core, and storage-data, but endpoint count/deployment mapping and aggregate monthly ingress and egress GB are absent; hourly and data-processing charges cannot be totaled. Catalog rates returned: Global Standard Private Endpoint USD 0.01 per 1 Hour; tiered ingress and egress meters USD 0.01/GB (tier minimum 0), USD 0.006/GB (1,000,000), and USD 0.004/GB (5,000,000).",
+    "Private DNS / shared scope: allocated/provisioned commercial zone count, ownership/allocation across dev and prod, and monthly query volume are absent. Direct evidence contains Azure DNS Private Zone rows (empty-region base USD 0.50, tier minimum 0; USD 0.10, tier minimum 25) and Private Queries (empty-region USD 0.40 per 1M), but no usage calculation is possible; pricing guidance also requires authoritative confirmation that the Private Zone unit '1' is per hosted zone per month.",
+    "P0v3 1-year reservation monthly equivalent: the fresh Linux P0v3 reservation row is found, but its unitOfMeasure='1 Hour' and reservationTerm='1 Year' do not establish an unambiguous conversion from retailPrice USD 508 to monthly cost under the available pricing guidance. No reservation savings are calculated."
+  ],
+  "mcp_calls_used": 17,
+  "direct_api_calls_used": 1,
+  "retail_api_evidence": [
+    {
+      "evidence_path": "/Users/seky/Downloads/azure-agentig-hackaton/agent-output/nordic-foods/02-cost-estimate.json.retail-evidence/azure-dns.json",
+      "resource_names": ["private-dns / shared scope"],
+      "selected_meters": [
+        {
+          "meter_id": "0b608a26-f611-4232-8192-ce81b6b57194",
+          "meter_name": "Private Zone",
+          "sku": "Private",
+          "billing_region": "empty-region commercial record",
+          "tier": [
+            {"tier_minimum_units": 0, "retail_price_usd": 0.5, "unit_of_measure": "1"},
+            {"tier_minimum_units": 25, "retail_price_usd": 0.1, "unit_of_measure": "1"}
+          ],
+          "calculation": "Not calculated: zone quantity and unit interpretation evidence are missing."
+        },
+        {
+          "meter_id": "46cff9cb-4b15-4af0-bf41-25143827fef8",
+          "meter_name": "Private Queries",
+          "sku": "Private",
+          "billing_region": "empty-region commercial record",
+          "tier": [{"tier_minimum_units": 0, "retail_price_usd": 0.4, "unit_of_measure": "1M"}],
+          "calculation": "Not calculated: monthly query count and billing allocation are missing."
+        }
+      ],
+      "original_mcp_failure": "Azure DNS Consumption broad regional-unset query returned Items=[], Count=0 after exact Private Zone and Private Queries meter queries also returned empty; see request-azure-dns.json and the preserved helper envelope.",
+      "queried_at": "2026-10-14T11:34:38.871Z",
+      "response_sha256": "cfd3a1e7ffb641ba74ed25343afbf3a77e753d9678946354612174d984282c90",
+      "calculation": "Evidence only; the estimate remains FAILED because deployment quantities/usage and the hosted-zone unit interpretation are unresolved."
+    }
+  ],
+  "manifest_writeback": [],
+  "manifest_writeback_applied": false,
+  "budget_exceeded": false
+}

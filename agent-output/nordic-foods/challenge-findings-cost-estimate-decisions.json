@@ -1,0 +1,39 @@
+{
+  "challenged_artifact": "agent-output/nordic-foods/03-des-cost-estimate.md",
+  "artifact_type": "cost-estimate",
+  "decisions": [
+    {
+      "issue_id": "2e365dc5",
+      "source_file": "challenge-findings-cost-estimate-pass2.json",
+      "pass_number": 2,
+      "issue_index": 0,
+      "severity": "should_fix",
+      "title": "Dev P0v3's one-year commitment comparison is missing",
+      "action": "accept",
+      "note": "",
+      "decided_at": "2026-10-14T13:10:00Z"
+    },
+    {
+      "issue_id": "9d73ee18",
+      "source_file": "challenge-findings-cost-estimate-pass3.json",
+      "pass_number": 3,
+      "issue_index": 0,
+      "severity": "should_fix",
+      "title": "Reservation utilization break-even is not stated",
+      "action": "accept",
+      "note": "",
+      "decided_at": "2026-10-14T13:45:00Z"
+    },
+    {
+      "issue_id": "66e22080",
+      "source_file": "challenge-findings-cost-estimate.json",
+      "pass_number": 1,
+      "issue_index": 0,
+      "severity": "should_fix",
+      "title": "Runner private-networking cost is not reconciled to the budget total",
+      "action": "accept",
+      "note": "",
+      "decided_at": "2026-10-14T14:30:00Z"
+    }
+  ]
+}

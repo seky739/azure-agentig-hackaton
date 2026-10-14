@@ -1,0 +1,35 @@
+{
+  "query": {
+    "serviceName": "Azure App Service",
+    "armRegionName": "swedencentral",
+    "meterName": "P1v3 App",
+    "priceType": "Consumption",
+    "currencyCode": "USD"
+  },
+  "remaining_requests": 16,
+  "mcp_failure": {
+    "kind": "empty_result",
+    "recorded_at": "2026-10-14T11:01:52Z",
+    "attempts": [
+      {
+        "query": {
+          "serviceName": "Azure App Service",
+          "armRegionName": "swedencentral",
+          "meterName": "P1v3 App",
+          "priceType": "Consumption",
+          "currencyCode": "USD"
+        },
+        "response": {
+          "result": {
+            "BillingCurrency": "USD",
+            "CustomerEntityId": "Default",
+            "CustomerEntityType": "Retail",
+            "Items": [],
+            "NextPageLink": null,
+            "Count": 0
+          }
+        }
+      }
+    ]
+  }
+}

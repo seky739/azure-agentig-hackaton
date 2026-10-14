@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "challenged_artifact": "agent-output/nordic-foods/03-des-cost-estimate.md",
+  "artifact_type": "cost-estimate",
+  "review_focus": "cost-feasibility",
+  "pass_number": 1,
+  "challenge_summary": "The prior SQL commitment, rounded-row reconciliation, Dev P0v3 comparison, and reservation break-even findings are closed. The COMPLETE worker totals reconcile to $348.77/month and $4,185.28/year. One budget-scope gap remains: the requirements include private GitHub-hosted runner networking in the budget, but the estimate excludes GitHub-billed runner minutes without reconciling those charges to the total.",
+  "compact_for_parent": "Pass 1 (cost-feasibility) | MEDIUM | 0 must_fix, 1 should_fix | Key: Runner private-networking cost is not reconciled to the budget total",
+  "risk_level": "medium",
+  "must_fix_count": 0,
+  "should_fix_count": 1,
+  "suggestion_count": 0,
+  "findings": [
+    {
+      "id": "66e22080",
+      "severity": "should_fix",
+      "category": "scope_risk",
+      "claim": "Runner private-networking cost is not reconciled to the budget total",
+      "evidence": "The requirements state that the GitHub-hosted runner's networking cost is included in the budget scope and require private DNS/connectivity for that runner. The estimate prices Azure private endpoints and an aggregate 60 GB of Private Link processing, but does not identify the runner's share or say those rows include all costs for its private networking path. It separately lists GitHub-hosted runner minutes as not paid for in this estimate because GitHub bills them. This leaves unclear whether the $348.77/month total covers the stated runner budget requirement or excludes a GitHub-side charge; no usage or cost basis reconciles the scope.",
+      "impact": "If the quoted $348.77 is used as the complete Dev-plus-Prod budget, an unaccounted runner networking charge could make actual spend higher than the estimate and undermine the stated 63% utilization comparison against the $550 equivalent budget. Even if the Azure endpoint/data-processing rows already cover the full network path, the estimate does not make that mapping auditable.",
+      "artifact_section": "What We Are Not Paying For (Yet); Assumptions & Uncertainty; Detailed Cost Breakdown",
+      "suggested_fix": {
+        "artifact_path": "agent-output/nordic-foods/03-des-cost-estimate.md",
+        "proposed_edit": "Reconcile the GitHub-hosted runner's private-networking charges against the requirements' budget scope. State whether the existing Azure endpoint and Private Link processing rows cover the runner path and whether any GitHub-side networking/runner charge is included. If charges are excluded, show a supported estimate with usage assumptions or explicitly label the $348.77 figure Azure-only and identify the excluded budget item. Do not double-count Azure charges already included in the baseline."
+      },
+      "traces_to": [],
+      "requires_step": "step-2",
+      "verification_anchors": [
+        "01-requirements.md: CI/CD and private operations access; runner networking cost is in budget scope and runner private DNS/connectivity are required",
+        "03-des-cost-estimate.md: Assumptions & Uncertainty; aggregate 60 GB/month Private Link data-processing assumption",
+        "03-des-cost-estimate.md: What We Are Not Paying For (Yet); GitHub-hosted runner minutes excluded as GitHub-billed",
+        "03-des-cost-estimate.md: Detailed Cost Breakdown → Line Items; endpoint-hours and aggregate Private Link processing rows"
+      ]
+    }
+  ],
+  "cache_inputs": {
+    "artifact_sha": "40755e786652d7465de60632d91ec6d26185734d58161b543df0445f251709ff",
+    "checklists_sha": "0300a75e3283490e9d1e64cb0ca32fba34d979e8e1665f4d63f17b0d2f08e25f",
+    "protocol_sha": "e3538fc4f5271ee0928a18048637392877fc42f57897824351940f06241cd091",
+    "subagent_sha": "c6b9c87f3ae8ca7019d9a2401a6798b0fb34374a1ee7c9c8c5f66a3344b071e1",
+    "model": "GPT-6 Luna (copilot)",
+    "artifact_hash": "4d50c2f1289f45510acd5d24b3e6958652c051ec41fe7ceebe44c50476cfc562"
+  },
+  "supporting_inputs": [
+    {
+      "path": "agent-output/nordic-foods/01-requirements.md",
+      "sha256": "843eb954c9b9080125192b3ce35eec0de2be4f455e02511ca38099af804b0052"
+    },
+    {
+      "path": "agent-output/nordic-foods/sku-manifest.json",
+      "sha256": "6c3ab5a217ff18658103fff8444f920309d3c3d18244135951e40dd0049c9196"
+    },
+    {
+      "path": "agent-output/nordic-foods/02-cost-estimate-v3.json",
+      "sha256": "cf8580a70d6395b6dac4148df598c2da9f588ce9c680df6fdc40600e1f45027a"
+    },
+    {
+      "path": "agent-output/nordic-foods/02-cost-estimate-ancillary-v2.json",
+      "sha256": "63abba7d6494eb8f86892c1872893ec5a472feb4ebf5ca4e92ec1aa2e732e856"
+    }
+  ]
+}

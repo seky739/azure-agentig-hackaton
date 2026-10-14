@@ -1,0 +1,327 @@
+{
+  "schema_version": "3.0",
+  "project": "nordic-foods",
+  "iac_tool": "",
+  "region": "swedencentral",
+  "branch": "main",
+  "updated": "2026-10-14T13:08:07Z",
+  "current_step": 2,
+  "decisions": {
+    "region": "swedencentral",
+    "compliance": "GDPR (EU data residency for customer PII)",
+    "budget": "~EUR 500/month total (Dev+Prod); EUR 700 after Challenge 4",
+    "architecture_pattern": "N-Tier",
+    "deployment_strategy": "",
+    "complexity": "medium",
+    "iac_tool": "Terraform",
+    "cost_alert_emails": "[\"michal.sakac@atoscz.net\"]",
+    "relational_db": "Azure SQL Database",
+    "sku_preferences_captured": "true",
+    "sku_manifest_status": "reviewed",
+    "sku_manifest_revision": "3",
+    "availability_zones": "single-zone-accepted",
+    "sku_confirmation_status": "approved",
+    "vnet_planning_mode": "guided",
+    "vnet_mode": "create-new",
+    "vnet_address_space": "10.0.0.0/16",
+    "subnet_plan": "[{\"purpose\":\"app-integration-prod\",\"size\":\"/26\",\"address_prefix\":\"10.0.0.0/26\",\"delegation\":\"Microsoft.Web/serverFarms\",\"nsg\":true,\"route_table\":null},{\"purpose\":\"app-integration-dev\",\"size\":\"/26\",\"address_prefix\":\"10.0.0.64/26\",\"delegation\":\"Microsoft.Web/serverFarms\",\"nsg\":true,\"route_table\":null},{\"purpose\":\"private-endpoints-prod-shared\",\"size\":\"/27\",\"address_prefix\":\"10.0.0.128/27\",\"delegation\":null,\"nsg\":true,\"route_table\":null},{\"purpose\":\"private-endpoints-dev\",\"size\":\"/27\",\"address_prefix\":\"10.0.0.160/27\",\"delegation\":null,\"nsg\":true,\"route_table\":null},{\"purpose\":\"github-runner\",\"size\":\"/27\",\"address_prefix\":\"10.0.0.192/27\",\"delegation\":\"GitHub.Network/networkSettings\",\"nsg\":true,\"route_table\":null}]",
+    "vnet_plan_decision": "confirmed",
+    "cost_feasibility_review": "run"
+  },
+  "open_findings": [
+    "should_fix|accept|65c6e16b|Blob recovery targets are not reconciled with the LRS pin|Blob RTO 24h/RPO 12h; LRS risk accepted",
+    "should_fix|accept|1f4ca7d2|GDPR erasure and retention are not implementable requirements|7y orders/invoices; erasure 30d; backups/logs 35d",
+    "should_fix|accept|a4f3d119|Performance and growth targets are not measurable enough to size the MVP|p95 2s/300ms; 50 orders/min x3",
+    "should_fix|accept|68be8821|Budget and reservation preferences lack a decision rule if required controls exceed the target|Escalate to CTO/CFO; private networking non-negotiable",
+    "should_fix|accept|96e44ea8|The private CI/CD runner path is assumed but not operationally specified|GitHub-hosted VNet runner with OIDC",
+    "should_fix|accept|2863f744|The 99.9% availability target has no acceptance path if single-zone Prod misses it|",
+    "should_fix|accept|731f0737|The scalability table labels per-minute throughput as transactions per day|",
+    "should_fix|accept|cf52e2b9|Private DNS is not stated as mandatory for every private endpoint|",
+    "should_fix|accept|0c715704|The App Service API's required private endpoint is omitted from both security-control inventories|",
+    "should_fix|accept|9f421374|GDPR erasure deadline conflicts with 35-day retention of secondary copies|",
+    "should_fix|accept|c93e50fa|Backup and log retention rows do not reflect the 30-day erasure ceiling|",
+    "should_fix|accept|96060f65|Seven-year receipt retention is outside the stated GDPR exception|",
+    "must_fix|accept|4ba8c7d4|Dev SKUs conflict with required private-network capabilities|",
+    "must_fix|accept|f885cc81|GDPR erasure and the 7-year exception lack an owned design control|",
+    "should_fix|accept|05da9073|The required one-year SQL commitment comparison is missing|",
+    "should_fix|accept|a1ebd181|The single-instance design does not demonstrate the 99.9% target|",
+    "should_fix|accept|acd544ec|The P0v3 x2 alternative is not established as zone redundant|",
+    "should_fix|accept|8379bb20|WAF scores and confidence levels are not auditable against the rubric|",
+    "should_fix|open|a1ebd181|The single-instance design does not demonstrate the 99.9% target|Re-review 2026-10-14: sponsor decision and numeric SLAs still open",
+    "should_fix|open|acd544ec|The P0v3 x2 alternative is not established as zone redundant|Re-review 2026-10-14: repo zone-redundancy matrix lists P1v3 and above, not P0v3",
+    "blocked|open|cost-review|Cost-feasibility re-review not current: reviewer failed twice, human handoff to 10-Challenger required|Failure log in agent-output/nordic-foods/_meta/challenger-failures.json",
+    "should_fix|accept|2e365dc5|Dev P0v3's one-year commitment comparison is missing|Applied 2026-10-14; cost estimate edited, pass 2 review now stale",
+    "should_fix|accept|a1ebd181|99.9% target not demonstrated|Applied 2026-10-14; gap and required changes documented, sponsor decision still open",
+    "should_fix|accept|acd544ec|P0v3 x2 not established as zone redundant|Applied 2026-10-14; relabeled capacity-only, zonal SKU unpriced",
+    "should_fix|accept|9d73ee18|Reservation utilization break-even is not stated|Applied 2026-10-14; cost estimate edited, pass 3 review now stale",
+    "should_fix|accept|10c71bf5|99.9% target remains unverified pending sponsor|Applied 2026-10-14; documents edited, review now stale",
+    "should_fix|accept|f05268f0|App health and performance alert coverage unspecified|Applied 2026-10-14; documents edited, review now stale",
+    "should_fix|accept|84488aab|Runner subnet described as placeholder|Applied 2026-10-14; documents edited, review now stale",
+    "should_fix|accept|66e22080|Runner private-networking cost not reconciled|Applied 2026-10-14; documents edited, review now stale",
+    "must_fix|accept|8beca2b6|Private ACR image pulls lack VNet path|Applied 2026-10-14; architecture review now stale",
+    "should_fix|accept|5a4843bd|State backend bootstrap sequence missing|Applied 2026-10-14; architecture review now stale",
+    "should_fix|accept|6e33396a|Diagnostics omit ACR and network resources|Applied 2026-10-14; architecture review now stale",
+    "should_fix|accept|d0b36737|Handoff omits confirmed subnet map|Applied 2026-10-14; architecture review now stale"
+  ],
+  "decision_log": [
+    {
+      "decision": "1-year reserved commitment preferred; service scope left to Architect",
+      "timestamp": "2026-10-14T08:51:47Z",
+      "rationale": "User answered Reserved 1-year at Phase 3j without naming a service",
+      "step": "1"
+    },
+    {
+      "decision": "Containerized App Service with Container Registry; public web portal, private API and private data services",
+      "timestamp": "2026-10-14T08:51:47Z",
+      "rationale": "User selected container deployment and baseline network posture over the brief's public-endpoints note",
+      "step": "1"
+    },
+    {
+      "decision": "Prod zone redundancy not required; single-zone accepted",
+      "timestamp": "2026-10-14T10:34:25Z",
+      "rationale": "User answer during requirements refinement; Architect to report SLA impact",
+      "step": "1"
+    },
+    {
+      "decision": "Secondary copies (backups, logs, derived) deleted or irretrievable within the 30-day erasure window",
+      "timestamp": "2026-10-14T10:47:06Z",
+      "rationale": "Accepted mitigation for finding 9f421374; Architect aligns SQL PITR and log retention to at most 30 days",
+      "step": "1"
+    },
+    {
+      "decision": "sku_confirmation_status=approved",
+      "timestamp": "2026-10-14T11:27:32Z",
+      "step": "2"
+    },
+    {
+      "decision": "vnet_planning_mode=guided",
+      "timestamp": "2026-10-14T11:29:21Z",
+      "step": "2"
+    },
+    {
+      "decision": "vnet_mode=create-new",
+      "timestamp": "2026-10-14T11:29:21Z",
+      "step": "2"
+    },
+    {
+      "decision": "vnet_address_space=10.0.0.0/16",
+      "timestamp": "2026-10-14T11:29:21Z",
+      "step": "2"
+    },
+    {
+      "decision": "subnet_plan=[{\"purpose\":\"app-integration-prod\",\"size\":\"/26\",\"address_prefix\":\"10.0.0.0/26\",\"delegation\":\"Microsoft.Web/serverFarms\",\"nsg\":true,\"route_table\":null},{\"purpose\":\"app-integration-dev\",\"size\":\"/26\",\"address_prefix\":\"10.0.0.64/26\",\"delegation\":\"Microsoft.Web/serverFarms\",\"nsg\":true,\"route_table\":null},{\"purpose\":\"private-endpoints-prod-shared\",\"size\":\"/27\",\"address_prefix\":\"10.0.0.128/27\",\"delegation\":null,\"nsg\":true,\"route_table\":null},{\"purpose\":\"private-endpoints-dev\",\"size\":\"/27\",\"address_prefix\":\"10.0.0.160/27\",\"delegation\":null,\"nsg\":true,\"route_table\":null},{\"purpose\":\"github-runner\",\"size\":\"/27\",\"address_prefix\":\"10.0.0.192/27\",\"delegation\":\"GitHub.Network/networkSettings\",\"nsg\":true,\"route_table\":null}]",
+      "timestamp": "2026-10-14T11:29:21Z",
+      "step": "2"
+    },
+    {
+      "decision": "vnet_plan_decision=confirmed",
+      "timestamp": "2026-10-14T11:29:21Z",
+      "step": "2"
+    },
+    {
+      "decision": "sku_manifest_status=reviewed",
+      "timestamp": "2026-10-14T11:47:44Z",
+      "step": "2"
+    },
+    {
+      "decision": "sku_manifest_revision=2",
+      "timestamp": "2026-10-14T11:47:44Z",
+      "step": "2"
+    },
+    {
+      "decision": "WAF scores: Security 7, Reliability 5, Performance 6, Cost 9, Operations 6; primary pillar Cost within the security baseline",
+      "timestamp": "2026-10-14T11:47:44Z",
+      "rationale": "Evidence-based scoring from Learn research and worker pricing; Reliability and Performance limited by single-zone single-instance Prod and no load evidence",
+      "step": "2"
+    },
+    {
+      "decision": "SKUs: Prod P0v3 x1 and SQL DTU S2, Dev B1 and DTU Basic, ACR Premium, Key Vault Standard; Blob LRS pin preserved",
+      "timestamp": "2026-10-14T11:47:44Z",
+      "rationale": "Approved at the SKU confirmation gate; cheapest viable tiers that keep private endpoints and a zone-redundancy upgrade path",
+      "step": "2"
+    },
+    {
+      "decision": "Priced total 287.12 USD/month (about EUR 261 at 1.10 USD per EUR), 52 percent of the EUR 500 budget; budget gate case B, no overage",
+      "timestamp": "2026-10-14T11:47:44Z",
+      "rationale": "Worker COMPLETE results 02-cost-estimate-v2.json plus 02-cost-estimate-ancillary-v2.json",
+      "step": "2"
+    },
+    {
+      "decision": "sku_confirmation_status=revising",
+      "timestamp": "2026-10-14T12:02:08Z",
+      "step": "2"
+    },
+    {
+      "decision": "sku_confirmation_status=approved",
+      "timestamp": "2026-10-14T12:03:41Z",
+      "step": "2"
+    },
+    {
+      "decision": "sku_manifest_revision=3",
+      "timestamp": "2026-10-14T12:03:41Z",
+      "step": "2"
+    },
+    {
+      "decision": "Dev tiers moved to P0v3 and DTU S0 (manifest rev 3) after accepted finding 4ba8c7d4; total now 348.77 USD/month (about EUR 317), 63 percent of the EUR 500 budget",
+      "timestamp": "2026-10-14T12:10:50Z",
+      "rationale": "Repo feature floors control validation; re-confirmed at the SKU gate; worker COMPLETE file 02-cost-estimate-v3.json plus 02-cost-estimate-ancillary-v2.json",
+      "step": "2"
+    },
+    {
+      "decision": "WAF scores revised: Security 7, Reliability 5 (Low confidence), Performance 6, Cost 8, Operations 6; composite 6.4",
+      "timestamp": "2026-10-14T12:10:50Z",
+      "rationale": "Accepted finding 8379bb20: evidence per score, confidence rule and composite average added",
+      "step": "2"
+    },
+    {
+      "decision": "GDPR erasure and retention owner is Michal Sakac",
+      "timestamp": "2026-10-14T12:32:12Z",
+      "rationale": "Named by the user at the Step 2 gate; field-mapping acceptance still pending",
+      "step": "2"
+    },
+    {
+      "decision": "Approver accepted post-review edits to 02 and 03 without re-review (stale reviews)",
+      "timestamp": "2026-10-14T12:39:21Z",
+      "rationale": "Chat statement by the user on 2026-10-14; edits were arithmetic and wording fixes for accepted findings 2e365dc5, 9d73ee18, a1ebd181, acd544ec and the GDPR owner. Not a risk authorization and does not make the stale reviews current.",
+      "step": "2"
+    },
+    {
+      "decision": "Human approved final revisions of 02-architecture-assessment.md and 03-des-cost-estimate.md",
+      "timestamp": "2026-10-14T13:08:07Z",
+      "rationale": "Approved in chat 2026-10-14 after current clean reviews; open items (99.9% sponsor decision, GDPR mapping acceptance, SLAs, restore test, zone-redundant SKU pricing) carried forward",
+      "step": "2"
+    }
+  ],
+  "review_audit": {
+    "step_1": {
+      "complexity": "",
+      "passes_planned": 0,
+      "passes_executed": 0,
+      "skipped": [],
+      "skip_reasons": [],
+      "models_used": []
+    },
+    "step_2": {
+      "complexity": "",
+      "passes_planned": 0,
+      "passes_executed": 0,
+      "skipped": [],
+      "skip_reasons": [],
+      "models_used": []
+    },
+    "step_3_5": {
+      "complexity": "",
+      "passes_planned": 0,
+      "passes_executed": 0,
+      "skipped": [],
+      "skip_reasons": [],
+      "models_used": []
+    },
+    "step_4": {
+      "complexity": "",
+      "passes_planned": 0,
+      "passes_executed": 0,
+      "skipped": [],
+      "skip_reasons": [],
+      "models_used": []
+    },
+    "step_5": {
+      "complexity": "",
+      "passes_planned": 0,
+      "passes_executed": 0,
+      "skipped": [],
+      "skip_reasons": [],
+      "models_used": []
+    },
+    "step_6": {
+      "complexity": "",
+      "passes_planned": 0,
+      "passes_executed": 0,
+      "skipped": [],
+      "skip_reasons": [],
+      "models_used": []
+    }
+  },
+  "steps": {
+    "1": {
+      "name": "Requirements",
+      "agent": "02-Requirements",
+      "status": "complete",
+      "sub_step": "phase_6_challenger",
+      "started": "2026-10-14T08:39:20Z",
+      "completed": "2026-10-14T09:13:38Z",
+      "artifacts": [],
+      "context_files_used": []
+    },
+    "2": {
+      "name": "Architecture",
+      "agent": "03-Architect",
+      "status": "in_progress",
+      "sub_step": "phase_6_challenger_pass1",
+      "started": "2026-10-14T09:18:01Z",
+      "completed": null,
+      "artifacts": [],
+      "context_files_used": []
+    },
+    "3": {
+      "name": "Design",
+      "agent": "04-Design",
+      "status": "pending",
+      "sub_step": null,
+      "started": null,
+      "completed": null,
+      "artifacts": [],
+      "context_files_used": []
+    },
+    "3_5": {
+      "name": "Governance",
+      "agent": "04g-Governance",
+      "status": "pending",
+      "sub_step": null,
+      "started": null,
+      "completed": null,
+      "artifacts": [],
+      "context_files_used": []
+    },
+    "4": {
+      "name": "IaC Plan",
+      "agent": "",
+      "status": "pending",
+      "sub_step": null,
+      "started": null,
+      "completed": null,
+      "artifacts": [],
+      "context_files_used": []
+    },
+    "5": {
+      "name": "IaC Code",
+      "agent": "",
+      "status": "pending",
+      "sub_step": null,
+      "started": null,
+      "completed": null,
+      "artifacts": [],
+      "context_files_used": []
+    },
+    "6": {
+      "name": "Deploy",
+      "agent": "",
+      "status": "pending",
+      "sub_step": null,
+      "started": null,
+      "completed": null,
+      "artifacts": [],
+      "context_files_used": []
+    },
+    "7": {
+      "name": "As-Built",
+      "agent": "08-As-Built",
+      "status": "pending",
+      "sub_step": null,
+      "started": null,
+      "completed": null,
+      "artifacts": [],
+      "context_files_used": []
+    }
+  }
+}
