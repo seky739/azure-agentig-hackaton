@@ -1,0 +1,28 @@
+{
+  "challenged_artifact": "agent-output/nordic-foods/04-governance-constraints.md",
+  "artifact_type": "governance",
+  "decisions": [
+    {
+      "issue_id": "f9bdb1b4",
+      "source_file": "challenge-findings-governance-constraints-pass1.json",
+      "pass_number": 1,
+      "issue_index": 0,
+      "severity": "should_fix",
+      "title": "DINE destination and retention are not verified against GDPR constraints",
+      "action": "accept",
+      "note": "",
+      "decided_at": "2026-10-14T13:45:00Z"
+    },
+    {
+      "issue_id": "e5f1c872",
+      "source_file": "challenge-findings-governance-constraints-pass1.json",
+      "pass_number": 1,
+      "issue_index": 1,
+      "severity": "should_fix",
+      "title": "The audit inventory omits SQL auditing and is not fully traceable",
+      "action": "accept",
+      "note": "",
+      "decided_at": "2026-10-14T13:45:00Z"
+    }
+  ]
+}

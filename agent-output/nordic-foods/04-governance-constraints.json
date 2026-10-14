@@ -5,12 +5,12 @@
     "include_defender_auto": false
   },
   "subscription_id": "7a2e8db9-42a4-4143-a9b5-c74fba49da74",
-  "discovered_at": "2026-10-14T13:21:56Z",
+  "discovered_at": "2026-10-14T13:25:00Z",
   "source": "azure-policy-rest-api",
-  "discovery_status": "PARTIAL",
+  "discovery_status": "COMPLETE",
   "discovery_metadata": {
-    "discovery_status": "PARTIAL",
-    "discovered_at": "2026-10-14T13:21:56Z",
+    "discovery_status": "COMPLETE",
+    "discovered_at": "2026-10-14T13:25:00Z",
     "scope": {
       "subscription_id": "7a2e8db9-42a4-4143-a9b5-c74fba49da74",
       "management_groups": [
@@ -41,7 +41,7 @@
     "blocker_count": 4,
     "auto_remediate_count": 72,
     "informational_count": 0,
-    "audit_count": 2,
+    "audit_count": 3,
     "disabled_count": 8,
     "exempted_count": 0
   },
@@ -8345,5 +8345,42 @@
   ],
   "tags_required": [],
   "allowed_locations": [],
+  "governance_gate_status": {
+    "status": "READY_FOR_PLANNING",
+    "reason": "Discovery COMPLETE; Phase 2.7 confirmations resolved against 13 inherited assignments with no tag, location or same-region policy.",
+    "blocks_before": null,
+    "resolved_confirmations": [
+      {
+        "topic": "required_resource_group_tags",
+        "decision": "No tag keys enforced by effective policy; greenfield APEX tag set is a project choice only",
+        "decided_at": "2026-10-14T13:30:00Z"
+      },
+      {
+        "topic": "allowed_locations",
+        "decision": "No location restriction in effective policy; swedencentral allowed (project choice, empty allow-list not treated as proof)",
+        "decided_at": "2026-10-14T13:30:00Z"
+      },
+      {
+        "topic": "rg_resource_same_region",
+        "decision": "Not required by policy (not applicable); alignment is a project choice",
+        "decided_at": "2026-10-14T13:30:00Z"
+      }
+    ]
+  },
+  "tag_contract": {
+    "resolution_status": "CONFIRMED",
+    "source": "policy",
+    "required_tag_keys": [],
+    "casing_guidance": "No policy-enforced keys; apply the greenfield APEX tag set as a project choice.",
+    "tags": [],
+    "planner_action": "No policy-mandated tags discovered. Emit the greenfield APEX tag set (lowercase) as a project choice and re-check at deploy time."
+  },
+  "location_constraints": {
+    "resolution_status": "CONFIRMED",
+    "target_region": "swedencentral",
+    "allowed_locations": [],
+    "rg_and_resource_locations_must_match": false,
+    "planner_action": "No policy location restriction discovered. Deploy in swedencentral as a project choice; align RG and resource locations by choice, not mandate."
+  },
   "_out_path": "agent-output/nordic-foods/04-governance-constraints.json"
 }

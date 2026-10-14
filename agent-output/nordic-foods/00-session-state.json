@@ -4,7 +4,7 @@
   "iac_tool": "",
   "region": "swedencentral",
   "branch": "main",
-  "updated": "2026-10-14T13:21:17Z",
+  "updated": "2026-10-14T13:41:15Z",
   "current_step": 3,
   "decisions": {
     "region": "swedencentral",
@@ -29,7 +29,11 @@
     "cost_feasibility_review": "run",
     "design_scope": "both",
     "diagram_tool": "python",
-    "subscription_id": "7a2e8db9-42a4-4143-a9b5-c74fba49da74"
+    "subscription_id": "7a2e8db9-42a4-4143-a9b5-c74fba49da74",
+    "discovery_signature": "sha256:3093b497c2a0f5cea506d6a401186bd5ab470923a8e28b4e9f5b6fbf47ba62ae",
+    "required_rg_tags": "none enforced by policy (greenfield APEX tag set is project choice)",
+    "allowed_locations": "no policy restriction; swedencentral allowed (confirmed against effective policy evidence)",
+    "rg_resource_same_region": "false (not policy-required; alignment is project choice)"
   },
   "open_findings": [
     "should_fix|accept|65c6e16b|Blob recovery targets are not reconciled with the LRS pin|Blob RTO 24h/RPO 12h; LRS risk accepted",
@@ -64,7 +68,17 @@
     "must_fix|accept|8beca2b6|Private ACR image pulls lack VNet path|Applied 2026-10-14; architecture review now stale",
     "should_fix|accept|5a4843bd|State backend bootstrap sequence missing|Applied 2026-10-14; architecture review now stale",
     "should_fix|accept|6e33396a|Diagnostics omit ACR and network resources|Applied 2026-10-14; architecture review now stale",
-    "should_fix|accept|d0b36737|Handoff omits confirmed subnet map|Applied 2026-10-14; architecture review now stale"
+    "should_fix|accept|d0b36737|Handoff omits confirmed subnet map|Applied 2026-10-14; architecture review now stale",
+    "Governance discovery PARTIAL (reproduced on --refresh): policy definition f69cd8b8-9a6e-46b4-be84-244e8b127944 (MFA enforcement for resource delete actions, MG eba79b85) could not be resolved; effect unclassified. 13 assignments, 4 blockers, 72 auto-remediate.",
+    "Root cause of PARTIAL: built-in def f69cd8b8 (MFA Enforcement - Delete) uses effect AuditAction (assignment sys.mfa-delete, enforcementMode Default, non-blocking). discover.py _effect_of/RELEVANT_EFFECTS has no AuditAction mapping, so it is flagged unresolved. Tooling gap, not a policy gap; no blocker impact.",
+    "Deny: Kubernetes cluster should not allow privileged containers",
+    "Deny: Kubernetes clusters should not allow container privilege escalation",
+    "Deny: Kubernetes clusters should be accessible only over HTTPS",
+    "Deny: Network interfaces should disable IP forwarding",
+    "should_fix|accept|f9bdb1b4|DINE destination and retention are not verified against GDPR constraints|",
+    "should_fix|accept|e5f1c872|The audit inventory omits SQL auditing and is not fully traceable|",
+    "Governance: DINE diagnostics target ATOS-CZ-la via literal all-zero subscription GUID that does not resolve; Step 4 must verify real workspace, EU region, 30-day retention and duplicate-setting ownership before treating DINE as effective.",
+    "Governance pass 2 (verification-only, 10-Challenger): APPROVED, 0 findings; f9bdb1b4 and e5f1c872 closed (unchanged should_fix). Open items remain: private DNS ownership, 99.9% sponsor decision."
   ],
   "decision_log": [
     {
@@ -233,6 +247,12 @@
       "timestamp": "2026-10-14T13:15:40Z",
       "rationale": "OIDC VNet runner, Premium ACR with private endpoint and AcrPull image pull",
       "step": "3"
+    },
+    {
+      "decision": "Select Governance replacement review for completion",
+      "rationale": "Pass 1 sidecar is stale after accepted fixes f9bdb1b4 and e5f1c872; pass 2 is a verification-only 10-Challenger review of the frozen bytes (APPROVED, 0 findings, both closed, verify-cache OK).; review=challenge-findings-governance-constraints-pass2.json; pass=2; sha256=a15afdc39b949e89cef2c4a5050da8ea1b28eedb36efe07e592ccf9be9126918",
+      "step": "3_5",
+      "timestamp": "2026-10-14T13:41:15Z"
     }
   ],
   "review_audit": {
@@ -255,7 +275,7 @@
     "step_3_5": {
       "complexity": "",
       "passes_planned": 0,
-      "passes_executed": 0,
+      "passes_executed": 1,
       "skipped": [],
       "skip_reasons": [],
       "models_used": []
@@ -319,10 +339,10 @@
     "3_5": {
       "name": "Governance",
       "agent": "04g-Governance",
-      "status": "in_progress",
+      "status": "complete",
       "sub_step": null,
       "started": "2026-10-14T13:21:17Z",
-      "completed": null,
+      "completed": "2026-10-14T13:41:15Z",
       "artifacts": [],
       "context_files_used": []
     },
@@ -365,6 +385,17 @@
       "completed": null,
       "artifacts": [],
       "context_files_used": []
+    }
+  },
+  "review_selections": {
+    "3_5": {
+      "schema_version": "review-selection-v1",
+      "path": "agent-output/nordic-foods/challenge-findings-governance-constraints-pass2.json",
+      "sha256": "a15afdc39b949e89cef2c4a5050da8ea1b28eedb36efe07e592ccf9be9126918",
+      "pass_number": 2,
+      "review_focus": "governance-reconciliation",
+      "input_coverage": "primary-and-review-guidance",
+      "selected_at": "2026-10-14T13:41:15Z"
     }
   }
 }

@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0",
+  "challenged_artifact": "agent-output/nordic-foods/04-governance-constraints.md",
+  "artifact_type": "governance-constraints",
+  "review_focus": "governance-reconciliation",
+  "pass_number": 1,
+  "challenge_summary": "The architecture's Deny applicability and project-choice confirmations are sound, but DINE destination compliance is unverified and SQL audit coverage is incomplete and not fully traceable.",
+  "compact_for_parent": "Pass 1 (governance-reconciliation) | MEDIUM | 0 must_fix, 2 should_fix | Key: DINE target/retention unverified; SQL audit assignment omitted",
+  "risk_level": "medium",
+  "must_fix_count": 0,
+  "should_fix_count": 2,
+  "suggestion_count": 0,
+  "findings": [
+    {
+      "id": "f9bdb1b4",
+      "severity": "should_fix",
+      "category": "governance_gap",
+      "claim": "DINE destination and retention are not verified against GDPR constraints",
+      "evidence": "The DINE ownership note identifies the central ATOS-CZ-la workspace and correctly says it is outside the project, but the companion JSON's logAnalytics resource IDs for the in-scope Storage/Blob, Premium ACR, SQL Database, Key Vault, App Service and App Service Plan policies contain an all-zero subscription GUID. The JSON provides no destination-region or retention parameter. The approved architecture and ADR-0003 require EU residency and a maximum 30-day lifetime for log copies; the note currently says the external workspace does not replace the project's retention cap without establishing that this second copy meets it. The note appropriately defers identity/remediation checks and duplicate-setting ownership to Step 4, but destination validity, region and retention need the same explicit gate.",
+      "impact": "If the recorded destination is unresolved or its actual region/retention falls outside the approved constraints, policy remediation may fail or send SQL, Key Vault, registry, App Service or storage diagnostics to a noncompliant location or retain them past 30 days. If Terraform also creates settings before ownership is confirmed, competing settings may result.",
+      "artifact_section": "## Plan Adaptations Based on Policies > ### Auto-Applied Resources (DINE ownership note)",
+      "suggested_fix": {
+        "artifact_path": "agent-output/nordic-foods/04-governance-constraints.md",
+        "line_range": [
+          297,
+          297
+        ],
+        "proposed_edit": "Add a Step 4 gate stating that the all-zero subscription GUID in the recorded logAnalytics parameters must be resolved against the live assignment before treating DINE as effective; verify the actual workspace resource ID, region, 30-day-or-shorter retention, policy identity permissions and remediation status. Keep Terraform diagnostic settings single-owned: declare project settings or rely on policy only after that ownership is verified."
+      },
+      "traces_to": [],
+      "verification_anchors": [
+        "## Plan Adaptations Based on Policies > ### Auto-Applied Resources: Storage Accounts and Blob Services, Container Registry, SQL Databases, Key Vault, App Service and App Service Plan policy rows",
+        "## Plan Adaptations Based on Policies > DINE ownership note",
+        "02-architecture-assessment.md > Required Capability Dependencies and GDPR Erasure and Retention Control (EU residency and 30-day log-copy limit)",
+        "03-des-adr-0003-azure-sql-dtu-entra-only-gdpr-retention.md > Decision (30-day Log Analytics retention)",
+        "04-governance-constraints.json > findings[] for the seven in-scope diagnostic policy families (logAnalytics destination uses all-zero subscription GUID; no retention/region parameter)"
+      ]
+    },
+    {
+      "id": "e5f1c872",
+      "severity": "should_fix",
+      "category": "governance_gap",
+      "claim": "The audit inventory omits SQL auditing and is not fully traceable",
+      "evidence": "The JSON reports audit_count=3 and its assignment_inventory includes 'Auditing on SQL server should be enabled', but the Compliance Frameworks section lists only the MFA Delete and MFA Write assignments. The JSON findings/policies arrays contain the 72 DeployIfNotExists and 4 Deny records, not per-policy audit records or effects; the discovery code increments audit_count and continues without adding a finding for Audit, AuditIfNotExists or AuditAction. The Markdown's AuditAction note is consistent with the code's count handling, but the exact effect and policy evidence are not reproducible from the supplied JSON, and the SQL audit assignment has no documented handling or monitoring obligation.",
+      "impact": "Step 4 may miss the SQL auditing expectation or fail to distinguish an audit-only control from an auto-remediation requirement; reviewers cannot verify all three audit classifications from the retained governance evidence, weakening audit readiness and downstream monitoring decisions.",
+      "artifact_section": "## Compliance Frameworks",
+      "suggested_fix": {
+        "artifact_path": "agent-output/nordic-foods/04-governance-constraints.md",
+        "line_range": [
+          393,
+          400
+        ],
+        "proposed_edit": "Enumerate all three audit-class assignments, including 'Auditing on SQL server should be enabled', with verified policy IDs, effects and scopes, and state the expected SQL auditing/monitoring action. Preserve per-policy audit effect details in the structured discovery output (or clearly identify any independently verified source) so the AuditAction classification and all three audit records can be checked rather than inferred from audit_count alone."
+      },
+      "traces_to": [],
+      "verification_anchors": [
+        "## Compliance Frameworks: current table lists only the MFA Delete and MFA Write assignments",
+        "04-governance-constraints.json > discovery_summary.audit_count = 3",
+        "04-governance-constraints.json > assignment_inventory: 'Auditing on SQL server should be enabled'",
+        "04-governance-constraints.json > findings[] and policies[]: no per-policy audit effect records",
+        ".github/skills/apex-azure-governance-discovery/scripts/discover.py > audit effect handling (Audit, AuditIfNotExists and AuditAction are counted then skipped)"
+      ]
+    }
+  ],
+  "cache_inputs": {
+    "artifact_sha": "21d1a78e55e866a9790f753d2e7e68716b4ee0299bf57bae9158b887fad042c8",
+    "checklists_sha": "0300a75e3283490e9d1e64cb0ca32fba34d979e8e1665f4d63f17b0d2f08e25f",
+    "protocol_sha": "e3538fc4f5271ee0928a18048637392877fc42f57897824351940f06241cd091",
+    "subagent_sha": "c6b9c87f3ae8ca7019d9a2401a6798b0fb34374a1ee7c9c8c5f66a3344b071e1",
+    "model": "GPT-6 Luna (copilot)",
+    "artifact_hash": "c70d83adfe6df8299aa34bea5eb0c998aaec3e26db368957c0a9fd3611999d7c"
+  },
+  "supporting_inputs": [
+    {
+      "path": "agent-output/nordic-foods/04-governance-constraints.json",
+      "sha256": "398d8cc2bb81460f9a26a122a46c74fd3aa62fe2b3086de175ab752496d5ccab"
+    },
+    {
+      "path": "agent-output/nordic-foods/02-architecture-assessment.md",
+      "sha256": "0fecc0b4db4bb9eacc9cfdc65632e67e6c46f411c3f4d648e635e5b132adcc16"
+    },
+    {
+      "path": "agent-output/nordic-foods/sku-manifest.json",
+      "sha256": "f274396bb9de233e2a198ded25a76301bcbc25d5665ce2a5257345da7229c9fa"
+    },
+    {
+      "path": "agent-output/nordic-foods/03-des-adr-0001-containerized-app-service-per-environment.md",
+      "sha256": "1f5c1dea768bef95594f61a8643aefbdb544e811ce96c9b3aea77ba4c4d166dc"
+    },
+    {
+      "path": "agent-output/nordic-foods/03-des-adr-0002-private-network-posture.md",
+      "sha256": "f18d4826931516b227013cb3161c913e098f0125c9c53c139502cb738194e936"
+    },
+    {
+      "path": "agent-output/nordic-foods/03-des-adr-0003-azure-sql-dtu-entra-only-gdpr-retention.md",
+      "sha256": "d30859dac4eb84cec1ac64d339ffc3fc1da6e711b13a5f86536d5c81d0c8c075"
+    },
+    {
+      "path": "agent-output/nordic-foods/03-des-adr-0004-single-zone-prod-availability-posture.md",
+      "sha256": "f6d6a98c373d9da8a998449d13d897f7f096fcd1142431bd8a7ca6ca8f11eb85"
+    },
+    {
+      "path": "agent-output/nordic-foods/03-des-adr-0005-private-cicd-runner-and-registry.md",
+      "sha256": "df16c36ca455980cd54b070f077dc09f4b15e592667964e821816f6f4543a092"
+    }
+  ]
+}
